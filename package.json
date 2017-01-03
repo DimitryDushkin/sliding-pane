@@ -1,0 +1,55 @@
+{
+  "name": "react-sliding-pane",
+  "version": "1.0.0",
+  "description": "Full height sliding pane",
+  "main": "dist/react-sliding-pane.js",
+  "module": "src/index.js",
+  "jsnext:main": "src/index.js",
+  "scripts": {
+    "build": "webpack",
+    "lint": "eslint ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DimitryDushkin/sliding-pane.git"
+  },
+  "keywords": [
+    "react",
+    "sliding",
+    "pane",
+    "pane",
+    "modal",
+    "popup"
+  ],
+  "tags": [
+    "react",
+    "sliding pane",
+    "dialog",
+    "popup"
+  ],
+  "author": "Dimitry Dushkin (dndushkin@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DimitryDushkin/sliding-pane/issues"
+  },
+  "homepage": "https://github.com/DimitryDushkin/sliding-pane",
+  "dependencies": {
+    "react-addons-css-transition-group": "^15.4.1",
+    "react-modal": "^1.6.5"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.4.0",
+    "webpack": "^2.2.0-rc.3"
+  }
+}
