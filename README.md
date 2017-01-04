@@ -15,6 +15,7 @@ I found sliding pane very helpful in situations when normal modal window (or jus
 
 ### How to use
 Install module and peer dependencies:
+
 `npm i --save react react-dom react-modal react-addons-css-transition-group react-sliding-pane`
 
 ```js
