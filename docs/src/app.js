@@ -11,15 +11,19 @@ class App extends Component {
 
     render() {
         return <div>
-            <button onClick={() => this.setState({ isPaneOne: true })}>Click me to open pane!</button>
+            <button onClick={() => this.setState({ isPaneOpen: true })}>Click me to open pane!</button>
             <SlidingPane
+                className='some-custom-class'
                 isOpen={ this.state.isPaneOpen }
-                title='Hey, it is pane title'
+                title='Hey, it is optional pane title.  I can be React component too.'
+                subtitle='Optional subtitle.'
                 onRequestClose={() => {
                     // triggered on "<" on left top click or on outside click
                     this.setState({ isPaneOpen: false });
                 }}>
-                <div>And I am pane content </div>
+                <div>And I am pane content. BTW, what rocks?</div>
+                <br />
+                <img src='img.png' />
             </SlidingPane>
         </div>;
     }

@@ -25374,15 +25374,17 @@ var App = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'button',
                     { onClick: function onClick() {
-                            return _this2.setState({ isPaneOne: true });
+                            return _this2.setState({ isPaneOpen: true });
                         } },
                     'Click me to open pane!'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_2_react_sliding_pane___default.a,
                     {
+                        className: 'some-custom-class',
                         isOpen: this.state.isPaneOpen,
-                        title: 'Hey, it is pane title',
+                        title: 'Hey, it is optional pane title.  I can be React component too.',
+                        subtitle: 'Optional subtitle.',
                         onRequestClose: function onRequestClose() {
                             // triggered on "<" on left top click or on outside click
                             _this2.setState({ isPaneOpen: false });
@@ -25390,8 +25392,10 @@ var App = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         null,
-                        'And I am pane content '
-                    )
+                        'And I am pane content. BTW, what rocks?'
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'img.png' })
                 )
             );
         }
