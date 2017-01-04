@@ -8,7 +8,7 @@ Features:
  * Based on react-modal
 
 ### [Open demo](https://dimitrydushkin.github.io/sliding-pane/example.html)
-<img src='docs/react-sliding-pane-screenshot.png' width='600' />
+<img src='https://raw.githubusercontent.com/DimitryDushkin/sliding-pane/master/docs/react-sliding-pane-screenshot.png' width='600' />
 
 ### When to use (UX)
 I found sliding pane very helpful in situations when normal modal window (or just popup) is not enough: long paginated lists, multistep form or nested popups.
