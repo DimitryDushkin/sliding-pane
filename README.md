@@ -1,5 +1,5 @@
 ## React Sliding Pane
-Pane that slides from the window. Like panes from Google Tag Manager.
+Pane that slides out of the window side. Like panes from Google Tag Manager.
 
 Features:
  * Animated open-close
@@ -16,7 +16,7 @@ I found sliding pane very helpful in situations when normal modal window (or jus
 ### How to use
 Install module and peer dependencies:
 
-`npm i --save react react-dom react-modal react-addons-css-transition-group react-sliding-pane`
+`npm i --save react react-dom react-sliding-pane`
 
 ```js
 import React, { Component } from 'react';
