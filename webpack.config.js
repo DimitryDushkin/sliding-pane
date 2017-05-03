@@ -36,7 +36,7 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: 'dist',
+        path: __dirname + '/dist',
         publicPath: '/',
         libraryTarget: 'umd',
         library: 'ReactSlidingPane',
@@ -49,7 +49,8 @@ module.exports = {
         new ExtractTextPlugin({
            filename: '[name].css',
            allChunks: true
-         })
+        }),
+        new webpack.NamedModulesPlugin()
     ],
 
     module: {

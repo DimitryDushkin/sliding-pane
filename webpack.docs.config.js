@@ -17,10 +17,9 @@ module.exports = {
                     ]
                 }
             },
-
             {
-                test: /\.css/,
-                loader: ExtractTextPlugin.extract(['css-loader'])
+                test: /\.styl$/,
+                loader: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
             }
         ]
     },
@@ -28,6 +27,8 @@ module.exports = {
         new ExtractTextPlugin({
             filename: './docs/dist/bundle.css',
             allChunks: true
-        })
-    ]
+        }),
+        new webpack.NamedModulesPlugin()
+    ],
+    devtool: 'source-map'
 };
