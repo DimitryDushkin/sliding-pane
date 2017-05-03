@@ -2,23 +2,34 @@
   display: flex;
   flex-direction: column;
   background: #fff;
-  width: 80%;
-  min-width: 420px;
-  margin-left: auto;
+  min-width: 100px;
   height: 100%;
   box-shadow: 0 8px 8px rgba(0,0,0,0.5);
   transition: transform 0.5s;
-  transform: translateX(100%);
   will-change: transform;
 }
 .slide-pane:focus {
   outline-style: none;
 }
-.slide-pane.ReactModal__Content--after-open {
+.slide-pane_from_right {
+  margin-left: auto;
+  transform: translateX(100%);
+}
+.slide-pane_from_right.ReactModal__Content--after-open {
   transform: translateX(0%);
 }
-.slide-pane.ReactModal__Content--before-close {
+.slide-pane_from_right.ReactModal__Content--before-close {
   transform: translateX(100%);
+}
+.slide-pane_from_left {
+  margin-right: auto;
+  transform: translateX(-100%);
+}
+.slide-pane_from_left.ReactModal__Content--after-open {
+  transform: translateX(0%);
+}
+.slide-pane_from_left.ReactModal__Content--before-close {
+  transform: translateX(-100%);
 }
 .slide-pane__overlay {
   position: fixed;

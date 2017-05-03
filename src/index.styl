@@ -4,24 +4,35 @@ $pane-header-height = 64px
     display flex
     flex-direction column
     background #fff
-    width 80%
-    min-width 420px
-    margin-left auto
+    min-width 100px
     height 100%
     box-shadow 0 8px 8px rgba(0,0,0,0.5)
 
     transition transform .5s
-    transform translateX(100%)
     will-change transform
 
     &:focus
         outline-style: none
 
-    &.ReactModal__Content--after-open
-        transform translateX(0%)
-
-    &.ReactModal__Content--before-close
+    &_from_right
+        margin-left auto
         transform translateX(100%)
+
+        &.ReactModal__Content--after-open
+            transform translateX(0%)
+
+        &.ReactModal__Content--before-close
+            transform translateX(100%)
+
+    &_from_left
+        margin-right auto
+        transform translateX(-100%)
+
+        &.ReactModal__Content--after-open
+            transform translateX(0%)
+
+        &.ReactModal__Content--before-close
+            transform translateX(-100%)
 
     &__overlay
         position fixed

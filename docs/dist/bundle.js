@@ -103,7 +103,10 @@ var App = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-        _this.state = { isPaneOpen: false };
+        _this.state = {
+            isPaneOpen: false,
+            isPaneOpenLeft: false
+        };
         return _this;
     }
 
@@ -120,7 +123,18 @@ var App = function (_Component) {
                     { onClick: function onClick() {
                             return _this2.setState({ isPaneOpen: true });
                         } },
-                    'Click me to open pane!'
+                    'Click me to open right pane!'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { style: { marginTop: '32px' } },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'button',
+                        { onClick: function onClick() {
+                                return _this2.setState({ isPaneOpenLeft: true });
+                            } },
+                        'Click me to open left pane with 20% width!'
+                    )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_2__src_index_js__["a" /* default */],
@@ -140,6 +154,22 @@ var App = function (_Component) {
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'img.png' })
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_2__src_index_js__["a" /* default */],
+                    {
+                        isOpen: this.state.isPaneOpenLeft,
+                        title: 'Hey, it is optional pane title.  I can be React component too.',
+                        from: 'left',
+                        width: '200px',
+                        onRequestClose: function onRequestClose() {
+                            return _this2.setState({ isPaneOpenLeft: false });
+                        } },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        null,
+                        'And I am pane content on left.'
+                    )
                 )
             );
         }
@@ -25658,12 +25688,20 @@ function ReactSlidingPane(_ref) {
         onRequestClose = _ref.onRequestClose,
         onAfterOpen = _ref.onAfterOpen,
         children = _ref.children,
-        className = _ref.className;
+        className = _ref.className,
+        _ref$from = _ref.from,
+        from = _ref$from === undefined ? 'right' : _ref$from,
+        width = _ref.width;
+
+    var directionClass = 'slide-pane_from_' + from;
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_2_react_modal___default.a,
         {
-            className: 'slide-pane ' + (className || ''),
+            className: 'slide-pane ' + directionClass + ' ' + (className || ''),
+            style: {
+                content: { width: width || '80%' }
+            },
             overlayClassName: 'slide-pane__overlay',
             closeTimeoutMS: CLOSE_TIMEOUT,
             isOpen: isOpen,
@@ -25719,7 +25757,9 @@ ReactSlidingPane.propTypes = {
     onRequestClose: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
     onAfterOpen: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
     children: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.any.isRequired,
-    className: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string
+    className: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+    from: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.oneOf(['left', 'right']),
+    width: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.number
 };
 
 /***/ }),

@@ -7,9 +7,14 @@ import './index.styl';
 
 const CLOSE_TIMEOUT = 500;
 
-export default function ReactSlidingPane({ isOpen, title, subtitle, onRequestClose, onAfterOpen, children, className }) {
+export default function ReactSlidingPane({ isOpen, title, subtitle, onRequestClose, onAfterOpen, children, className, from = 'right', width }) {
+    const directionClass = `slide-pane_from_${from}`;
+
     return <Modal
-        className={ 'slide-pane ' + (className || '') }
+        className={ `slide-pane ${directionClass} ${className || ''}` }
+        style={{
+            content: { width: width || '80%' } 
+        }}
         overlayClassName='slide-pane__overlay'
         closeTimeoutMS={ CLOSE_TIMEOUT }
         isOpen={ isOpen }
@@ -27,15 +32,11 @@ export default function ReactSlidingPane({ isOpen, title, subtitle, onRequestClo
         </div>
         <div className='slide-pane__content'>
             {/* Render pane content only when pane is visible, hide after close animation */}
-            <CSSTransitionGroup
+             <CSSTransitionGroup
                 transitionName='content-appear'
                 transitionEnter={ false }
                 transitionLeaveTimeout={ CLOSE_TIMEOUT }>
-                {
-                    isOpen
-                        ? children
-                        : null
-                }
+                { isOpen ? children : null }
             </CSSTransitionGroup>
         </div>
     </Modal>;
@@ -48,5 +49,7 @@ ReactSlidingPane.propTypes = {
     onRequestClose: PropTypes.func,
     onAfterOpen: PropTypes.func,
     children: PropTypes.any.isRequired,
-    className: PropTypes.string
+    className: PropTypes.string,
+    from: PropTypes.oneOf(['left', 'right']),
+    width: PropTypes.number
 };
