@@ -2138,6 +2138,7 @@ function ReactSlidingPane(_ref) {
         onAfterOpen = _ref.onAfterOpen,
         children = _ref.children,
         className = _ref.className,
+        overlayClassName = _ref.overlayClassName,
         _ref$from = _ref.from,
         from = _ref$from === undefined ? 'right' : _ref$from,
         width = _ref.width;
@@ -2151,12 +2152,12 @@ function ReactSlidingPane(_ref) {
             style: {
                 content: { width: width || '80%' }
             },
-            overlayClassName: 'slide-pane__overlay',
+            overlayClassName: 'slide-pane__overlay ' + (overlayClassName || ''),
             closeTimeoutMS: CLOSE_TIMEOUT,
             isOpen: isOpen,
             onAfterOpen: onAfterOpen,
             onRequestClose: onRequestClose,
-            contentLabel: 'Modal "' + title + '"' },
+            contentLabel: 'Modal "' + (title || '') + '"' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'slide-pane__header' },
@@ -2207,6 +2208,7 @@ ReactSlidingPane.propTypes = {
     onAfterOpen: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
     children: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.any.isRequired,
     className: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+    overlayClassName: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
     from: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.oneOf(['left', 'right']),
     width: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.number
 };
