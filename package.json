@@ -1,6 +1,6 @@
 {
   "name": "react-sliding-pane",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Full height sliding pane",
   "main": "dist/react-sliding-pane.js",
   "scripts": {

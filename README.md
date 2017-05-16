@@ -69,3 +69,9 @@ class App extends Component {
 render(<App />, document.getElementById('app'));
 
 ```
+
+### How to develop
+```
+npm run docs
+open docs/example.html
+```

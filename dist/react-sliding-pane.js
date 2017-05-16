@@ -615,11 +615,14 @@ module.exports = checkPropTypes;
 
 var emptyFunction = __webpack_require__("./node_modules/fbjs/lib/emptyFunction.js");
 var invariant = __webpack_require__("./node_modules/fbjs/lib/invariant.js");
+var ReactPropTypesSecret = __webpack_require__("./node_modules/prop-types/lib/ReactPropTypesSecret.js");
 
 module.exports = function() {
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-  function shim() {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret) {
+      // It is still safe when called from React.
+      return;
+    }
     invariant(
       false,
       'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
@@ -631,6 +634,8 @@ module.exports = function() {
   function getShim() {
     return shim;
   };
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
   var ReactPropTypes = {
     array: shim,
     bool: shim,
@@ -986,6 +991,20 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       return emptyFunction.thatReturnsNull;
     }
 
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        warning(
+          false,
+          'Invalid argument supplid to oneOfType. Expected an array of check functions, but ' +
+          'received %s at index %s.',
+          getPostfixForTypeWarning(checker),
+          i
+        );
+        return emptyFunction.thatReturnsNull;
+      }
+    }
+
     function validate(props, propName, componentName, location, propFullName) {
       for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
         var checker = arrayOfTypeCheckers[i];
@@ -1118,6 +1137,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   // This handles more types than `getPropType`. Only used for error messages.
   // See `createPrimitiveTypeChecker`.
   function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
     var propType = getPropType(propValue);
     if (propType === 'object') {
       if (propValue instanceof Date) {
@@ -1127,6 +1149,23 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       }
     }
     return propType;
+  }
+
+  // Returns a string that is postfixed to a warning about an invalid type.
+  // For example, "undefined" or "of type array"
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
   }
 
   // Returns class name of the object, if any.
@@ -2071,6 +2110,7 @@ module.exports = warning;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["default"] = ReactSlidingPane;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__("./node_modules/prop-types/index.js");
@@ -2081,7 +2121,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_transition_group___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_transition_group__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__index_styl__ = __webpack_require__("./src/index.styl");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__index_styl___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__index_styl__);
-/* harmony export (immutable) */ __webpack_exports__["default"] = ReactSlidingPane;
 
 
 
@@ -2091,15 +2130,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var CLOSE_TIMEOUT = 500;
 
-function ReactSlidingPane(props) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_modal___default.a, {
-        className: 'slide-pane ' + (props.className || ''),
-        overlayClassName: 'slide-pane__overlay',
-        closeTimeoutMS: CLOSE_TIMEOUT,
-        isOpen: props.isOpen,
-        onAfterOpen: props.onAfterOpen,
-        onRequestClose: props.onRequestClose,
-        contentLabel: 'Modal "' + props.title + '"' });
+function ReactSlidingPane(_ref) {
+    var isOpen = _ref.isOpen,
+        title = _ref.title,
+        subtitle = _ref.subtitle,
+        onRequestClose = _ref.onRequestClose,
+        onAfterOpen = _ref.onAfterOpen,
+        children = _ref.children,
+        className = _ref.className,
+        _ref$from = _ref.from,
+        from = _ref$from === undefined ? 'right' : _ref$from,
+        width = _ref.width;
+
+    var directionClass = 'slide-pane_from_' + from;
+
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_2_react_modal___default.a,
+        {
+            className: 'slide-pane ' + directionClass + ' ' + (className || ''),
+            style: {
+                content: { width: width || '80%' }
+            },
+            overlayClassName: 'slide-pane__overlay',
+            closeTimeoutMS: CLOSE_TIMEOUT,
+            isOpen: isOpen,
+            onAfterOpen: onAfterOpen,
+            onRequestClose: onRequestClose,
+            contentLabel: 'Modal "' + title + '"' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'slide-pane__header' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'slide-pane__close', onClick: onRequestClose },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'svg',
+                    { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 13 22' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('path', { fill: 'currentColor', fillRule: 'evenodd', d: 'M4 11l8 8c.6.5.6 1.5 0 2-.5.6-1.5.6-2 0l-9-9c-.6-.5-.6-1.5 0-2l9-9c.5-.6 1.5-.6 2 0 .6.5.6 1.5 0 2l-8 8z' })
+                )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'slide-pane__title-wrapper' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'h2',
+                    { className: 'slide-pane__title' },
+                    title
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'slide-pane__subtitle' },
+                    subtitle
+                )
+            )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'slide-pane__content' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_3_react_transition_group__["CSSTransitionGroup"],
+                {
+                    transitionName: 'content-appear',
+                    transitionEnter: false,
+                    transitionLeaveTimeout: CLOSE_TIMEOUT },
+                isOpen ? children : null
+            )
+        )
+    );
 }
 
 ReactSlidingPane.propTypes = {
@@ -2109,7 +2206,9 @@ ReactSlidingPane.propTypes = {
     onRequestClose: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
     onAfterOpen: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
     children: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.any.isRequired,
-    className: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string
+    className: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+    from: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.oneOf(['left', 'right']),
+    width: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.number
 };
 
 /***/ }),
