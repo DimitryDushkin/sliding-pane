@@ -2210,7 +2210,7 @@ ReactSlidingPane.propTypes = {
     className: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
     overlayClassName: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
     from: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.oneOf(['left', 'right']),
-    width: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.number
+    width: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string
 };
 
 /***/ }),
