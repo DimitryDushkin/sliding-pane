@@ -43,6 +43,7 @@ export default function ReactSlidingPane({
         <div className='slide-pane__content'>
             {/* Render pane content only when pane is visible, hide after close animation */}
              <CSSTransitionGroup
+                component='div'
                 transitionName='content-appear'
                 transitionEnter={ false }
                 transitionLeaveTimeout={ CLOSE_TIMEOUT }>
