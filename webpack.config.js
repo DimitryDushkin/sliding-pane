@@ -50,7 +50,6 @@ module.exports = {
            filename: '[name].css',
            allChunks: true
         }),
-        new webpack.NamedModulesPlugin(),
         new webpack.optimize.ModuleConcatenationPlugin()
     ],
 
@@ -60,12 +59,6 @@ module.exports = {
                 test: /\.js?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
-                query: {
-                    presets: [
-                      "react",
-                      ["es2015", { "modules": false } ]
-                    ]
-                }
             },
             {
                 test: /\.styl$/,

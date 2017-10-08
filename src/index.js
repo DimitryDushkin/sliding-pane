@@ -16,7 +16,8 @@ export default function ReactSlidingPane({
     className,
     overlayClassName,
     from = 'right',
-    width }) {
+    width
+}) {
     const directionClass = `slide-pane_from_${from}`;
 
     return <Modal

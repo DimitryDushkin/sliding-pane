@@ -10,12 +10,6 @@ module.exports = {
                 test: /\.js?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
-                query: {
-                    presets: [
-                      "react",
-                      ["es2015", { "modules": false } ]
-                    ]
-                }
             },
             {
                 test: /\.styl$/,
@@ -28,7 +22,8 @@ module.exports = {
             filename: './docs/dist/bundle.css',
             allChunks: true
         }),
-        new webpack.NamedModulesPlugin()
+        new webpack.NamedModulesPlugin(),
+        new webpack.optimize.ModuleConcatenationPlugin()
     ],
     devtool: 'source-map'
 };

@@ -70,13 +70,112 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__("./node_modules/react-dom/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_index_js__ = __webpack_require__("./src/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_index_styl__ = __webpack_require__("./src/index.styl");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_index_styl___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__src_index_styl__);
+
+// EXTERNAL MODULE: ./node_modules/react/index.js
+var react = __webpack_require__("./node_modules/react/index.js");
+var react_default = /*#__PURE__*/__webpack_require__.n(react);
+
+// EXTERNAL MODULE: ./node_modules/react-dom/index.js
+var react_dom = __webpack_require__("./node_modules/react-dom/index.js");
+var react_dom_default = /*#__PURE__*/__webpack_require__.n(react_dom);
+
+// EXTERNAL MODULE: ./node_modules/prop-types/index.js
+var prop_types = __webpack_require__("./node_modules/prop-types/index.js");
+var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
+
+// EXTERNAL MODULE: ./node_modules/react-modal/lib/index.js
+var lib = __webpack_require__("./node_modules/react-modal/lib/index.js");
+var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
+
+// EXTERNAL MODULE: ./src/index.styl
+var src = __webpack_require__("./src/index.styl");
+var src_default = /*#__PURE__*/__webpack_require__.n(src);
+
+// CONCATENATED MODULE: ./src/index.js
+
+
+
+
+
+
+var CLOSE_TIMEOUT = 500;
+
+function ReactSlidingPane(_ref) {
+    var isOpen = _ref.isOpen,
+        title = _ref.title,
+        subtitle = _ref.subtitle,
+        onRequestClose = _ref.onRequestClose,
+        onAfterOpen = _ref.onAfterOpen,
+        children = _ref.children,
+        className = _ref.className,
+        overlayClassName = _ref.overlayClassName,
+        _ref$from = _ref.from,
+        from = _ref$from === undefined ? 'right' : _ref$from,
+        width = _ref.width;
+
+    var directionClass = 'slide-pane_from_' + from;
+
+    return react_default.a.createElement(
+        lib_default.a,
+        {
+            className: 'slide-pane ' + directionClass + ' ' + (className || ''),
+            style: {
+                content: { width: width || '80%' }
+            },
+            overlayClassName: 'slide-pane__overlay ' + (overlayClassName || ''),
+            closeTimeoutMS: CLOSE_TIMEOUT,
+            isOpen: isOpen,
+            onAfterOpen: onAfterOpen,
+            onRequestClose: onRequestClose,
+            contentLabel: 'Modal "' + (title || '') + '"' },
+        react_default.a.createElement(
+            'div',
+            { className: 'slide-pane__header' },
+            react_default.a.createElement(
+                'div',
+                { className: 'slide-pane__close', onClick: onRequestClose },
+                react_default.a.createElement(
+                    'svg',
+                    { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 13 22' },
+                    react_default.a.createElement('path', { fill: 'currentColor', fillRule: 'evenodd', d: 'M4 11l8 8c.6.5.6 1.5 0 2-.5.6-1.5.6-2 0l-9-9c-.6-.5-.6-1.5 0-2l9-9c.5-.6 1.5-.6 2 0 .6.5.6 1.5 0 2l-8 8z' })
+                )
+            ),
+            react_default.a.createElement(
+                'div',
+                { className: 'slide-pane__title-wrapper' },
+                react_default.a.createElement(
+                    'h2',
+                    { className: 'slide-pane__title' },
+                    title
+                ),
+                react_default.a.createElement(
+                    'div',
+                    { className: 'slide-pane__subtitle' },
+                    subtitle
+                )
+            )
+        ),
+        react_default.a.createElement(
+            'div',
+            { className: 'slide-pane__content' },
+            children
+        )
+    );
+}
+
+ReactSlidingPane.propTypes = {
+    isOpen: prop_types_default.a.bool.isRequired,
+    title: prop_types_default.a.any,
+    subtitle: prop_types_default.a.any,
+    onRequestClose: prop_types_default.a.func,
+    onAfterOpen: prop_types_default.a.func,
+    children: prop_types_default.a.any.isRequired,
+    className: prop_types_default.a.string,
+    overlayClassName: prop_types_default.a.string,
+    from: prop_types_default.a.oneOf(['left', 'right']),
+    width: prop_types_default.a.string
+};
+// CONCATENATED MODULE: ./docs/src/app.js
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -92,7 +191,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var App = function (_Component) {
+var app_App = function (_Component) {
     _inherits(App, _Component);
 
     function App(props) {
@@ -112,20 +211,20 @@ var App = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            return react_default.a.createElement(
                 'div',
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                react_default.a.createElement(
                     'button',
                     { onClick: function onClick() {
                             return _this2.setState({ isPaneOpen: true });
                         } },
                     'Click me to open right pane!'
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                react_default.a.createElement(
                     'div',
                     { style: { marginTop: '32px' } },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    react_default.a.createElement(
                         'button',
                         { onClick: function onClick() {
                                 return _this2.setState({ isPaneOpenLeft: true });
@@ -133,8 +232,8 @@ var App = function (_Component) {
                         'Click me to open left pane with 20% width!'
                     )
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_2__src_index_js__["a" /* default */],
+                react_default.a.createElement(
+                    ReactSlidingPane,
                     {
                         className: 'some-custom-class',
                         overlayClassName: 'some-custom-overlay-class',
@@ -145,10 +244,10 @@ var App = function (_Component) {
                             // triggered on "<" on left top click or on outside click
                             _this2.setState({ isPaneOpen: false });
                         } },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Content, null)
+                    react_default.a.createElement(app_Content, null)
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_2__src_index_js__["a" /* default */],
+                react_default.a.createElement(
+                    ReactSlidingPane,
                     {
                         isOpen: this.state.isPaneOpenLeft,
                         title: 'Hey, it is optional pane title.  I can be React component too.',
@@ -157,7 +256,7 @@ var App = function (_Component) {
                         onRequestClose: function onRequestClose() {
                             return _this2.setState({ isPaneOpenLeft: false });
                         } },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    react_default.a.createElement(
                         'div',
                         null,
                         'And I am pane content on left.'
@@ -168,9 +267,9 @@ var App = function (_Component) {
     }]);
 
     return App;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+}(react["Component"]);
 
-var Content = function (_Component2) {
+var app_Content = function (_Component2) {
     _inherits(Content, _Component2);
 
     function Content() {
@@ -192,29 +291,29 @@ var Content = function (_Component2) {
     }, {
         key: 'render',
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            return react_default.a.createElement(
                 'div',
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                react_default.a.createElement(
                     'div',
                     null,
                     'And I am pane content. BTW, what rocks?'
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                react_default.a.createElement(
                     'p',
                     null,
                     'Contructor and componentDidMount called every time pane opens.'
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'img.png' })
+                react_default.a.createElement('br', null),
+                react_default.a.createElement('img', { src: 'img.png' })
             );
         }
     }]);
 
     return Content;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+}(react["Component"]);
 
-Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(App, null), document.getElementById('app'));
+Object(react_dom["render"])(react_default.a.createElement(app_App, null), document.getElementById('app'));
 
 /***/ }),
 
@@ -22396,105 +22495,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./src/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = ReactSlidingPane;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__("./node_modules/prop-types/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_modal__ = __webpack_require__("./node_modules/react-modal/lib/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_styl__ = __webpack_require__("./src/index.styl");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_styl___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__index_styl__);
-
-
-
-
-
-
-var CLOSE_TIMEOUT = 500;
-
-function ReactSlidingPane(_ref) {
-    var isOpen = _ref.isOpen,
-        title = _ref.title,
-        subtitle = _ref.subtitle,
-        onRequestClose = _ref.onRequestClose,
-        onAfterOpen = _ref.onAfterOpen,
-        children = _ref.children,
-        className = _ref.className,
-        overlayClassName = _ref.overlayClassName,
-        _ref$from = _ref.from,
-        from = _ref$from === undefined ? 'right' : _ref$from,
-        width = _ref.width;
-
-    var directionClass = 'slide-pane_from_' + from;
-
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_2_react_modal___default.a,
-        {
-            className: 'slide-pane ' + directionClass + ' ' + (className || ''),
-            style: {
-                content: { width: width || '80%' }
-            },
-            overlayClassName: 'slide-pane__overlay ' + (overlayClassName || ''),
-            closeTimeoutMS: CLOSE_TIMEOUT,
-            isOpen: isOpen,
-            onAfterOpen: onAfterOpen,
-            onRequestClose: onRequestClose,
-            contentLabel: 'Modal "' + (title || '') + '"' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'slide-pane__header' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'slide-pane__close', onClick: onRequestClose },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'svg',
-                    { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 13 22' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('path', { fill: 'currentColor', fillRule: 'evenodd', d: 'M4 11l8 8c.6.5.6 1.5 0 2-.5.6-1.5.6-2 0l-9-9c-.6-.5-.6-1.5 0-2l9-9c.5-.6 1.5-.6 2 0 .6.5.6 1.5 0 2l-8 8z' })
-                )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'slide-pane__title-wrapper' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'h2',
-                    { className: 'slide-pane__title' },
-                    title
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'slide-pane__subtitle' },
-                    subtitle
-                )
-            )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'slide-pane__content' },
-            children
-        )
-    );
-}
-
-ReactSlidingPane.propTypes = {
-    isOpen: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool.isRequired,
-    title: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.any,
-    subtitle: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.any,
-    onRequestClose: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
-    onAfterOpen: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
-    children: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.any.isRequired,
-    className: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-    overlayClassName: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-    from: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.oneOf(['left', 'right']),
-    width: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string
-};
 
 /***/ }),
 
