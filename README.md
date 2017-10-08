@@ -4,8 +4,11 @@ Pane that slides out of the window side. Like panes from Google Tag Manager.
 Features:
  * Animated open-close
  * Outside click or left top arrow click to close
- * Efficient: pane content is not rendered when pane is closed (thx to css transition group)
+ * Efficient: pane content is not rendered when pane is closed
  * Based on react-modal
+ * Small — 2.63 Kb minified
+
+See [changelog](https://dimitrydushkin.github.io/sliding-pane/CHANGELOG.md).
 
 ### [Open demo](https://dimitrydushkin.github.io/sliding-pane/example.html)
 <img src='https://raw.githubusercontent.com/DimitryDushkin/sliding-pane/master/docs/react-sliding-pane-screenshot.png' width='600' />

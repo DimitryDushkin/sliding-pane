@@ -32,9 +32,7 @@ class App extends Component {
                     // triggered on "<" on left top click or on outside click
                     this.setState({ isPaneOpen: false });
                 } }>
-                <div>And I am pane content. BTW, what rocks?</div>
-                <br />
-                <img src='img.png' />
+                <Content />
             </SlidingPane>
             <SlidingPane
                 isOpen={ this.state.isPaneOpenLeft }
@@ -44,6 +42,28 @@ class App extends Component {
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
                 <div>And I am pane content on left.</div>
             </SlidingPane>
+        </div>;
+    }
+}
+
+class Content extends Component {
+    constructor() {
+        super()
+        // eslint-disable-next-line
+        console.log('contructor');
+    }
+
+    componentDidMount() {
+        // eslint-disable-next-line
+        console.log('mount');
+    }
+
+    render() {
+        return <div>
+            <div>And I am pane content. BTW, what rocks?</div>
+            <p>Contructor and componentDidMount called every time pane opens.</p>
+            <br />
+            <img src='img.png' />
         </div>;
     }
 }

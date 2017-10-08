@@ -18,10 +18,10 @@ const webpack = require('webpack'),
         commonjs: 'react-modal',
         amd: 'react-modal'
     },
-    reactCSSTransitionGroupExternal = {
-        commonjs2: 'react-addons-css-transition-group',
-        commonjs: 'react-addons-css-transition-group',
-        amd: 'react-addons-css-transition-group'
+    propTypes = {
+        commonjs2: 'prop-types',
+        commonjs: 'prop-types',
+        amd: 'prop-types'
     };
 
 module.exports = {
@@ -32,7 +32,7 @@ module.exports = {
         'react': reactExternal,
         'react-dom': reactDOMExternal,
         'react-modal': reactModalExternal,
-        'react-addons-css-transition-group': reactCSSTransitionGroupExternal
+        'prop-types': propTypes
     },
     output: {
         filename: '[name].js',
@@ -50,7 +50,8 @@ module.exports = {
            filename: '[name].css',
            allChunks: true
         }),
-        new webpack.NamedModulesPlugin()
+        new webpack.NamedModulesPlugin(),
+        new webpack.optimize.ModuleConcatenationPlugin()
     ],
 
     module: {

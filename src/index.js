@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
-import { CSSTransitionGroup } from 'react-transition-group';
 
 import './index.styl';
 
@@ -41,14 +40,7 @@ export default function ReactSlidingPane({
             </div>
         </div>
         <div className='slide-pane__content'>
-            {/* Render pane content only when pane is visible, hide after close animation */}
-             <CSSTransitionGroup
-                component='div'
-                transitionName='content-appear'
-                transitionEnter={ false }
-                transitionLeaveTimeout={ CLOSE_TIMEOUT }>
-                { isOpen ? children : null }
-            </CSSTransitionGroup>
+            { children }
         </div>
     </Modal>;
 }
