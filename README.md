@@ -14,7 +14,7 @@ See [changelog](https://dimitrydushkin.github.io/sliding-pane/CHANGELOG.md).
 <img src='https://raw.githubusercontent.com/DimitryDushkin/sliding-pane/master/docs/react-sliding-pane-screenshot.png' width='600' />
 
 ### When to use (UX)
-I found sliding pane very helpful in situations when normal modal window (or just popup) is not enough: long list with pagination, multi-step form or nested popups.
+I've found sliding pane very helpful in situations when normal modal window (or just popup) is not enough: long list with pagination, multi-step form or nested popups.
 
 ### How to use
 Install module and peer dependencies:
