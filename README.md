@@ -10,6 +10,8 @@ Features:
 
 See [changelog](https://dimitrydushkin.github.io/sliding-pane/CHANGELOG.md).
 
+[![npm version](https://badge.fury.io/js/react-sliding-pane.svg)](https://badge.fury.io/js/react-sliding-pane)
+
 ### [Open demo](https://dimitrydushkin.github.io/sliding-pane/example.html)
 <img src='https://raw.githubusercontent.com/DimitryDushkin/sliding-pane/master/docs/react-sliding-pane-screenshot.png' width='600' />
 
