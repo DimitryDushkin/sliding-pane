@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import Modal from 'react-modal';
 // import SlidingPane from 'react-sliding-pane';
 // import 'react-sliding-pane/dist/react-sliding-pane.css';
 import SlidingPane from '../../src/index.js';
@@ -14,8 +15,12 @@ class App extends Component {
         };
     }
 
+    componentDidMount() {
+        Modal.setAppElement(this.el);
+    }
+
     render() {
-        return <div>
+        return <div ref={ref => this.el = ref}>
             <button onClick={() => this.setState({ isPaneOpen: true })}>Click me to open right pane!</button>
             <div style={{ marginTop: '32px' }}>
                 <button onClick={ () => this.setState({ isPaneOpenLeft: true }) }>
