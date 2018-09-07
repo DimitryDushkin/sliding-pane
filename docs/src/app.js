@@ -11,7 +11,8 @@ class App extends Component {
         super(props);
         this.state = {
             isPaneOpen: false,
-            isPaneOpenLeft: false
+            isPaneOpenLeft: false,
+            isPaneOpenBottom: false
         };
     }
 
@@ -25,6 +26,9 @@ class App extends Component {
             <div style={{ marginTop: '32px' }}>
                 <button onClick={ () => this.setState({ isPaneOpenLeft: true }) }>
                     Click me to open left pane with 20% width!
+                </button>
+                <button onClick={ () => this.setState({ isPaneOpenBottom: true }) }>
+                    Click me to open bottom pane
                 </button>
             </div>
             <SlidingPane
@@ -46,6 +50,14 @@ class App extends Component {
                 width='200px'
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
                 <div>And I am pane content on left.</div>
+            </SlidingPane>
+            <SlidingPane
+                isOpen={ this.state.isPaneOpenBottom }
+                title='Hey, it is optional pane title.  I can be React component too.'
+                from='bottom'
+                width='100%'
+                onRequestClose={ () => this.setState({ isPaneOpenBottom: false }) }>
+                <div>And I am pane content on the bottom.</div>
             </SlidingPane>
         </div>;
     }

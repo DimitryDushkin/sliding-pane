@@ -32,7 +32,17 @@ $pane-header-height = 64px
             transform translateX(0%)
 
         &.ReactModal__Content--before-close
-            transform translateX(-100%)
+            transform translateX(-100%)            
+
+    &_from_bottom
+        height 90%;
+        margin-top: 10%
+        background-color: #ff0000
+        transform translateY(100%)
+        &.ReactModal__Content--after-open
+            transform translateY(-9%)
+        &.ReactModal__Content--before-close
+            transform translateY(100%)
 
     &__overlay
         position fixed

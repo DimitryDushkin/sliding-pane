@@ -172,7 +172,7 @@ ReactSlidingPane.propTypes = {
     children: prop_types_default.a.any.isRequired,
     className: prop_types_default.a.string,
     overlayClassName: prop_types_default.a.string,
-    from: prop_types_default.a.oneOf(['left', 'right']),
+    from: prop_types_default.a.oneOf(['left', 'right', 'bottom']),
     width: prop_types_default.a.string
 };
 // CONCATENATED MODULE: ./docs/src/app.js
@@ -202,7 +202,8 @@ var app_App = function (_Component) {
 
         _this.state = {
             isPaneOpen: false,
-            isPaneOpenLeft: false
+            isPaneOpenLeft: false,
+            isPaneOpenBottom: false
         };
         return _this;
     }
@@ -238,6 +239,13 @@ var app_App = function (_Component) {
                                 return _this2.setState({ isPaneOpenLeft: true });
                             } },
                         'Click me to open left pane with 20% width!'
+                    ),
+                    react_default.a.createElement(
+                        'button',
+                        { onClick: function onClick() {
+                                return _this2.setState({ isPaneOpenBottom: true });
+                            } },
+                        'Click me to open bottom pane'
                     )
                 ),
                 react_default.a.createElement(
@@ -268,6 +276,22 @@ var app_App = function (_Component) {
                         'div',
                         null,
                         'And I am pane content on left.'
+                    )
+                ),
+                react_default.a.createElement(
+                    ReactSlidingPane,
+                    {
+                        isOpen: this.state.isPaneOpenBottom,
+                        title: 'Hey, it is optional pane title.  I can be React component too.',
+                        from: 'bottom',
+                        width: '100%',
+                        onRequestClose: function onRequestClose() {
+                            return _this2.setState({ isPaneOpenBottom: false });
+                        } },
+                    react_default.a.createElement(
+                        'div',
+                        null,
+                        'And I am pane content on the bottom.'
                     )
                 )
             );
