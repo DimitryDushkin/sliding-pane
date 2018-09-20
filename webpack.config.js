@@ -47,14 +47,14 @@ module.exports = {
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         }),
         new ExtractTextPlugin({
-           filename: '[name].css',
-           allChunks: true
+            filename: '[name].css',
+            allChunks: true
         }),
         new webpack.optimize.ModuleConcatenationPlugin()
     ],
 
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js?$/,
                 exclude: /node_modules/,

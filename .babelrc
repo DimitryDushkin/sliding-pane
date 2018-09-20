@@ -1,13 +1,15 @@
 {
     "presets": [
-        "react",
+        "@babel/preset-react",
         [
-            "env",
+            "@babel/preset-env",
             {
-              "modules": false,
-              "targets": {
-                  "browsers": ["last 2 versions"]
-              }
+                "modules": false,
+                "targets": {
+                    "browsers": [
+                        "last 2 versions"
+                    ]
+                }
             }
         ]
     ]

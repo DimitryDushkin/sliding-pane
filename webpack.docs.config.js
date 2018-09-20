@@ -5,7 +5,7 @@ module.exports = {
     entry: './docs/src/app.js',
     output: { filename: './docs/dist/bundle.js' },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js?$/,
                 exclude: /node_modules/,
