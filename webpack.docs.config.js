@@ -1,9 +1,13 @@
 const webpack = require('webpack'),
+    path = require('path'),
     ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: './docs/src/app.js',
-    output: { filename: './docs/dist/bundle.js' },
+    output: {
+        path: path.resolve(__dirname, "docs/dist"),
+        filename: 'bundle.js'
+    },
     module: {
         rules: [
             {
@@ -19,7 +23,7 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin({
-            filename: './docs/dist/bundle.css',
+            filename: 'bundle.css',
             allChunks: true
         }),
         new webpack.NamedModulesPlugin(),
