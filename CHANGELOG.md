@@ -1,3 +1,6 @@
+### 3.0.0
+Massive libs update. Webpack 4, babel 7.
+
 ### 2.1.0
 Thanks to @zilahir component now supports openning from the bottom.
 
