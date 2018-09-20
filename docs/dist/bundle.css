@@ -31,6 +31,18 @@
 .slide-pane_from_left.ReactModal__Content--before-close {
   transform: translateX(-100%);
 }
+.slide-pane_from_bottom {
+  height: 90%;
+  margin-top: 10%;
+  background-color: #f00;
+  transform: translateY(100%);
+}
+.slide-pane_from_bottom.ReactModal__Content--after-open {
+  transform: translateY(-9%);
+}
+.slide-pane_from_bottom.ReactModal__Content--before-close {
+  transform: translateY(100%);
+}
 .slide-pane__overlay {
   position: fixed;
   top: 0px;
