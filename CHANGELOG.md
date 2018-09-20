@@ -1,3 +1,6 @@
+### 2.1.0
+Thanks to @zilahir component now supports openning from the bottom.
+
 ### 2.0.1
 * Bundle - 2.5 Kb
 
