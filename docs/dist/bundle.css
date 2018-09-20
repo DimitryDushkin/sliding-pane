@@ -32,13 +32,12 @@
   transform: translateX(-100%);
 }
 .slide-pane_from_bottom {
-  height: 90%;
-  margin-top: 10%;
-  background-color: #f00;
+  height: 90vh;
+  margin-top: 10vh;
   transform: translateY(100%);
 }
 .slide-pane_from_bottom.ReactModal__Content--after-open {
-  transform: translateY(-9%);
+  transform: translateY(0%);
 }
 .slide-pane_from_bottom.ReactModal__Content--before-close {
   transform: translateY(100%);
