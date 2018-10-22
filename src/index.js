@@ -7,17 +7,21 @@ import './index.styl';
 const CLOSE_TIMEOUT = 500;
 
 export default function ReactSlidingPane({
-    isOpen,
-    title,
-    subtitle,
-    onRequestClose,
-    onAfterOpen,
-    children,
-    className,
-    overlayClassName,
-    from = 'right',
-    width
-}) {
+                                             isOpen,
+                                             title,
+                                             subtitle,
+                                             onRequestClose,
+                                             onAfterOpen,
+                                             children,
+                                             className,
+                                             overlayClassName,
+                                             from = 'right',
+                                             width,
+                                             closeWhenClickOutsidePane,
+                                             headerClassName,
+                                             contentClassName,
+                                             closePaneClassName
+                                         }) {
     const directionClass = `slide-pane_from_${from}`;
 
     return <Modal
@@ -29,18 +33,22 @@ export default function ReactSlidingPane({
         closeTimeoutMS={ CLOSE_TIMEOUT }
         isOpen={ isOpen }
         onAfterOpen={ onAfterOpen }
-        onRequestClose={ onRequestClose }
+        onRequestClose={ () => { closeWhenClickOutsidePane ? onRequestClose() : null }}
         contentLabel={ `Modal "${title || ''}"` }>
-        <div className='slide-pane__header'>
-            <div className='slide-pane__close' onClick={ onRequestClose }>
-                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 22'><path fill='currentColor' fillRule='evenodd' d='M4 11l8 8c.6.5.6 1.5 0 2-.5.6-1.5.6-2 0l-9-9c-.6-.5-.6-1.5 0-2l9-9c.5-.6 1.5-.6 2 0 .6.5.6 1.5 0 2l-8 8z'/></svg>
+        <div className={ `slide-pane__header ${headerClassName || ''}` } >
+            <div className={ `slide-pane__close ${closePaneClassName || ''}` } onClick={ onRequestClose }>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 22'>
+                    <path fill='currentColor' fillRule='evenodd'
+                          d='M4 11l8 8c.6.5.6 1.5 0 2-.5.6-1.5.6-2 0l-9-9c-.6-.5-.6-1.5 0-2l9-9c.5-.6 1.5-.6 2 0 .6.5.6 1.5 0 2l-8 8z'/>
+                </svg>
             </div>
+
             <div className='slide-pane__title-wrapper'>
                 <h2 className='slide-pane__title'>{ title }</h2>
                 <div className='slide-pane__subtitle'>{ subtitle }</div>
             </div>
         </div>
-        <div className='slide-pane__content'>
+        <div className={ `slide-pane__content ${contentClassName || ''}` } >
             { children }
         </div>
     </Modal>;
@@ -56,5 +64,9 @@ ReactSlidingPane.propTypes = {
     className: PropTypes.string,
     overlayClassName: PropTypes.string,
     from: PropTypes.oneOf(['left', 'right', 'bottom']),
-    width: PropTypes.string
+    width: PropTypes.string,
+    closeWhenClickOutsidePane: PropTypes.bool,
+    headerClassName: PropTypes.string,
+    contentClassName: PropTypes.string,
+    closePaneClassName: PropTypes.string
 };
