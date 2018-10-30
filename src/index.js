@@ -7,21 +7,22 @@ import './index.styl';
 const CLOSE_TIMEOUT = 500;
 
 export default function ReactSlidingPane({
-                                             isOpen,
-                                             title,
-                                             subtitle,
-                                             onRequestClose,
-                                             onAfterOpen,
-                                             children,
-                                             className,
-                                             overlayClassName,
-                                             from = 'right',
-                                             width,
-                                             closeWhenClickOutsidePane,
-                                             headerClassName,
-                                             contentClassName,
-                                             closePaneClassName
-                                         }) {
+    isOpen,
+    title,
+    subtitle,
+    onRequestClose,
+    onAfterOpen,
+    children,
+    className,
+    overlayClassName,
+    from = 'right',
+    width,
+    closeWhenClickOutsidePane,
+    headerClassName,
+    contentClassName,
+    closePaneClassName
+ }) {
+
     const directionClass = `slide-pane_from_${from}`;
 
     return <Modal

@@ -1,9 +1,5 @@
 $pane-header-height = 64px
 
-$pane-overlay-top = 55px;
-$pane-overlay-left = 315px;
-$pane-overlay-bottom = 34px;
-
 .slide-pane
     display flex
     flex-direction column
@@ -106,42 +102,3 @@ $pane-overlay-bottom = 34px;
     &__subtitle
         font-size 12px
         margin-top 2px
-
-    &__overlay_custom
-        position: fixed;
-        top: $pane-overlay-top;
-        left: $pane-overlay-left;
-        right: 0px;
-        bottom: $pane-overlay-bottom;
-        background-color: rgba(0,0,0,0);
-        z-index: 99;
-
-    &__overlay_custom.ReactModal__Overlay--after-open
-        background-color rgba(0, 0, 0, 0)
-        transition background-color .5s
-
-    &__header_custom
-        display: flex;
-        flex: 0 0 40px;
-        align-items: center;
-        background: #ebebeb;
-        height: 64px;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-
-    &__content_custom
-        position: relative;
-        overflow-y: auto;
-        padding: 0px 0px;
-        flex: 1 1 auto;
-        height: 100%;
-
-    &__close_custom
-        margin-left 24px
-        padding 0px
-        opacity .7
-        cursor pointer
-        transform: rotate(180deg)
-
-        svg
-            width 12px
-            padding 0

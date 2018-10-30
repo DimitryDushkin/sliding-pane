@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 // import 'react-sliding-pane/dist/react-sliding-pane.css';
 import SlidingPane from '../../src/index.js';
 import '../../src/index.styl';
+import './custom.css';
 
 
 class App extends Component {
@@ -54,9 +55,9 @@ class App extends Component {
             </div>
             <SlidingPane
                 className='some-custom-class'
-                overlayClassName={this.state.applyCustomStyle ? 'slide-pane__overlay_custom' : ''}
-                headerClassName={this.state.applyCustomStyle ? 'slide-pane__header_custom' : ''}
-                closePaneClassName={this.state.applyCustomStyle ? 'slide-pane__close_custom' : ''}
+                overlayClassName={this.state.applyCustomStyle ? 'slidePaneOverlay_Custom' : ''}
+                headerClassName={this.state.applyCustomStyle ? 'slidePaneHeader_Custom' : ''}
+                closePaneClassName={this.state.applyCustomStyle ? 'slidePaneClose_Custom' : ''}
                 isOpen={ this.state.isPaneOpen }
                 title={!this.state.applyCustomStyle ? 'Hey, it is optional pane title.  I can be React component too.' : ''}
                 subtitle={!this.state.applyCustomStyle ?'Optional subtitle.' : ''}

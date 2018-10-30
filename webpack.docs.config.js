@@ -18,6 +18,10 @@ module.exports = {
             {
                 test: /\.styl$/,
                 loader: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
+            },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
             }
         ]
     },

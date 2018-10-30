@@ -127,14 +127,18 @@ function ReactSlidingPane(_ref) {
   var isOpen = _ref.isOpen,
       title = _ref.title,
       subtitle = _ref.subtitle,
-      onRequestClose = _ref.onRequestClose,
+      _onRequestClose = _ref.onRequestClose,
       onAfterOpen = _ref.onAfterOpen,
       children = _ref.children,
       className = _ref.className,
       overlayClassName = _ref.overlayClassName,
       _ref$from = _ref.from,
       from = _ref$from === void 0 ? 'right' : _ref$from,
-      width = _ref.width;
+      width = _ref.width,
+      closeWhenClickOutsidePane = _ref.closeWhenClickOutsidePane,
+      headerClassName = _ref.headerClassName,
+      contentClassName = _ref.contentClassName,
+      closePaneClassName = _ref.closePaneClassName;
   var directionClass = "slide-pane_from_".concat(from);
   return react_default.a.createElement(lib_default.a, {
     className: "slide-pane ".concat(directionClass, " ").concat(className || ''),
@@ -147,13 +151,15 @@ function ReactSlidingPane(_ref) {
     closeTimeoutMS: CLOSE_TIMEOUT,
     isOpen: isOpen,
     onAfterOpen: onAfterOpen,
-    onRequestClose: onRequestClose,
+    onRequestClose: function onRequestClose() {
+      closeWhenClickOutsidePane ? _onRequestClose() : null;
+    },
     contentLabel: "Modal \"".concat(title || '', "\"")
   }, react_default.a.createElement("div", {
-    className: "slide-pane__header"
+    className: "slide-pane__header ".concat(headerClassName || '')
   }, react_default.a.createElement("div", {
-    className: "slide-pane__close",
-    onClick: onRequestClose
+    className: "slide-pane__close ".concat(closePaneClassName || ''),
+    onClick: _onRequestClose
   }, react_default.a.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 13 22"
@@ -168,7 +174,7 @@ function ReactSlidingPane(_ref) {
   }, title), react_default.a.createElement("div", {
     className: "slide-pane__subtitle"
   }, subtitle))), react_default.a.createElement("div", {
-    className: "slide-pane__content"
+    className: "slide-pane__content ".concat(contentClassName || '')
   }, children));
 }
 ReactSlidingPane.propTypes = {
@@ -181,8 +187,15 @@ ReactSlidingPane.propTypes = {
   className: prop_types_default.a.string,
   overlayClassName: prop_types_default.a.string,
   from: prop_types_default.a.oneOf(['left', 'right', 'bottom']),
-  width: prop_types_default.a.string
+  width: prop_types_default.a.string,
+  closeWhenClickOutsidePane: prop_types_default.a.bool,
+  headerClassName: prop_types_default.a.string,
+  contentClassName: prop_types_default.a.string,
+  closePaneClassName: prop_types_default.a.string
 };
+// EXTERNAL MODULE: ./docs/src/custom.css
+var custom = __webpack_require__("./docs/src/custom.css");
+
 // CONCATENATED MODULE: ./docs/src/app.js
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -210,6 +223,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var app_App =
 /*#__PURE__*/
 function (_Component) {
@@ -224,7 +238,9 @@ function (_Component) {
     _this.state = {
       isPaneOpen: false,
       isPaneOpenLeft: false,
-      isPaneOpenBottom: false
+      isPaneOpenBottom: false,
+      allowCloseOutsidePane: false,
+      applyCustomStyle: false
     };
     return _this;
   }
@@ -243,7 +259,29 @@ function (_Component) {
         ref: function ref(_ref) {
           return _this2.el = _ref;
         }
-      }, react_default.a.createElement("button", {
+      }, react_default.a.createElement("input", {
+        name: "AllowCloseOutsidePane",
+        type: "checkbox",
+        checked: this.state.allowCloseOutsidePane,
+        onChange: function onChange() {
+          return _this2.setState({
+            allowCloseOutsidePane: !_this2.state.allowCloseOutsidePane
+          });
+        }
+      }), react_default.a.createElement("label", {
+        htmlFor: "AllowCloseOutsidePane"
+      }, "Allow close outside pane"), react_default.a.createElement("br", null), react_default.a.createElement("input", {
+        name: "ApplyCustomStyle",
+        type: "checkbox",
+        checked: this.state.applyCustomStyle,
+        onChange: function onChange() {
+          return _this2.setState({
+            applyCustomStyle: !_this2.state.applyCustomStyle
+          });
+        }
+      }), react_default.a.createElement("label", {
+        htmlFor: "ApplyCustomStyle"
+      }, "Apply Custom Styles to Right pane example"), react_default.a.createElement("br", null), react_default.a.createElement("br", null), react_default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.setState({
             isPaneOpen: true
@@ -267,17 +305,23 @@ function (_Component) {
         }
       }, "Click me to open bottom pane")), react_default.a.createElement(ReactSlidingPane, {
         className: "some-custom-class",
-        overlayClassName: "some-custom-overlay-class",
+        overlayClassName: this.state.applyCustomStyle ? 'slidePaneOverlay_Custom' : '',
+        headerClassName: this.state.applyCustomStyle ? 'slidePaneHeader_Custom' : '',
+        closePaneClassName: this.state.applyCustomStyle ? 'slidePaneClose_Custom' : '',
         isOpen: this.state.isPaneOpen,
-        title: "Hey, it is optional pane title.  I can be React component too.",
-        subtitle: "Optional subtitle.",
+        title: !this.state.applyCustomStyle ? 'Hey, it is optional pane title.  I can be React component too.' : '',
+        subtitle: !this.state.applyCustomStyle ? 'Optional subtitle.' : '',
         onRequestClose: function onRequestClose() {
-          // triggered on "<" on left top click or on outside click
+          // triggered on "<" on left top click or on outside click depending on allowCloseOutsidePane state
           _this2.setState({
             isPaneOpen: false
           });
-        }
-      }, react_default.a.createElement(app_Content, null)), react_default.a.createElement(ReactSlidingPane, {
+        },
+        closeWhenClickOutsidePane: this.state.allowCloseOutsidePane,
+        width: this.state.applyCustomStyle ? '50%' : ''
+      }, react_default.a.createElement(app_Content, {
+        applyCustomStyle: this.state.applyCustomStyle
+      })), react_default.a.createElement(ReactSlidingPane, {
         isOpen: this.state.isPaneOpenLeft,
         title: "Hey, it is optional pane title.  I can be React component too.",
         from: "left",
@@ -286,7 +330,8 @@ function (_Component) {
           return _this2.setState({
             isPaneOpenLeft: false
           });
-        }
+        },
+        closeWhenClickOutsidePane: this.state.allowCloseOutsidePane
       }, react_default.a.createElement("div", null, "And I am pane content on left.")), react_default.a.createElement(ReactSlidingPane, {
         isOpen: this.state.isPaneOpenBottom,
         title: "Hey, it is optional pane title.  I can be React component too.",
@@ -296,7 +341,8 @@ function (_Component) {
           return _this2.setState({
             isPaneOpenBottom: false
           });
-        }
+        },
+        closeWhenClickOutsidePane: this.state.allowCloseOutsidePane
       }, react_default.a.createElement("div", null, "And I am pane content on the bottom.")));
     }
   }]);
@@ -309,12 +355,12 @@ var app_Content =
 function (_Component2) {
   _inherits(Content, _Component2);
 
-  function Content() {
+  function Content(props) {
     var _this3;
 
     _classCallCheck(this, Content);
 
-    _this3 = _possibleConstructorReturn(this, _getPrototypeOf(Content).call(this)); // eslint-disable-next-line
+    _this3 = _possibleConstructorReturn(this, _getPrototypeOf(Content).call(this, props)); // eslint-disable-next-line
 
     console.log('contructor');
     return _this3;
@@ -329,9 +375,9 @@ function (_Component2) {
   }, {
     key: "render",
     value: function render() {
-      return react_default.a.createElement("div", null, react_default.a.createElement("div", null, "And I am pane content. BTW, what rocks?"), react_default.a.createElement("p", null, "Contructor and componentDidMount called every time pane opens."), react_default.a.createElement("br", null), react_default.a.createElement("img", {
+      return react_default.a.createElement("div", null, !this.props.applyCustomStyle ? react_default.a.createElement("div", null, react_default.a.createElement("div", null, "And I am pane content. BTW, what rocks?"), react_default.a.createElement("p", null, "Contructor and componentDidMount called every time pane opens."), react_default.a.createElement("br", null), react_default.a.createElement("img", {
         src: "img.png"
-      }));
+      })) : react_default.a.createElement("div", null));
     }
   }]);
 
@@ -339,6 +385,18 @@ function (_Component2) {
 }(react["Component"]);
 
 Object(react_dom["render"])(react_default.a.createElement(app_App, null), document.getElementById('app'));
+
+/***/ }),
+
+/***/ "./docs/src/custom.css":
+/*!*****************************!*\
+  !*** ./docs/src/custom.css ***!
+  \*****************************/
+/*! no static exports found */
+/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
