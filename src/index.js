@@ -64,5 +64,5 @@ ReactSlidingPane.propTypes = {
     overlayClassName: PropTypes.string,
     from: PropTypes.oneOf(['left', 'right', 'bottom']),
     width: PropTypes.string,
-    closeIcon: PropTypes.string
+    closeIcon: PropTypes.any
 };
