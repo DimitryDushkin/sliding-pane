@@ -66,7 +66,7 @@ class App extends Component {
                 <img src='img.png' />
             </SlidingPane>
             <SlidingPane
-                closeIcon={<div>SOME DIV WITH CLOSE ICON</div>}
+                closeIcon={<div>Some div containain custom close icon.</div>}
                 isOpen={ this.state.isPaneOpenLeft }
                 title='Hey, it is optional pane title.  I can be React component too.'
                 from='left'
