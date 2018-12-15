@@ -10,12 +10,17 @@ Features:
 
 See [changelog](https://dimitrydushkin.github.io/sliding-pane/CHANGELOG.md).
 
+
 [![npm version](https://badge.fury.io/js/react-sliding-pane.svg)](https://badge.fury.io/js/react-sliding-pane)
 
-[![Thanks to BrowserStack](docs/browserstack-logo.svg | width=300)](https://www.browserstack.com/)
+<a href="https://www.browserstack.com/">
+    <img src="https://raw.githubusercontent.com/DimitryDushkin/sliding-pane/master/docs/browserstack-logo.svg" width="300" title="Thanks to BrowserStack" />
+</a>
 
 ### [Open demo](https://dimitrydushkin.github.io/sliding-pane/example.html)
-[![Demo](docs/react-sliding-pane-screenshot.png | width=600)](https://dimitrydushkin.github.io/sliding-pane/example.html)
+<a href="https://dimitrydushkin.github.io/sliding-pane/example.html">
+    <img src="https://raw.githubusercontent.com/DimitryDushkin/sliding-pane/master/docs/react-sliding-pane-screenshot.png" width="600" />
+</a>
 
 ### When to use (UX)
 I've found sliding pane very helpful in situations when normal modal window (or just popup) is not enough: long list with pagination, multi-step form or nested popups.
