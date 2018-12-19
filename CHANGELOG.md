@@ -1,3 +1,6 @@
+### 3.1.0
+— Prop to allow customizing the close icon by @stanographer
+
 ### 3.0.0
 Massive libs update. Webpack 4, babel 7.
 

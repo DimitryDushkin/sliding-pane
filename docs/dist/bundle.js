@@ -132,6 +132,7 @@ function ReactSlidingPane(_ref) {
       children = _ref.children,
       className = _ref.className,
       overlayClassName = _ref.overlayClassName,
+      closeIcon = _ref.closeIcon,
       _ref$from = _ref.from,
       from = _ref$from === void 0 ? 'right' : _ref$from,
       width = _ref.width;
@@ -154,7 +155,7 @@ function ReactSlidingPane(_ref) {
   }, react_default.a.createElement("div", {
     className: "slide-pane__close",
     onClick: onRequestClose
-  }, react_default.a.createElement("svg", {
+  }, closeIcon ? closeIcon : react_default.a.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 13 22"
   }, react_default.a.createElement("path", {
@@ -181,7 +182,8 @@ ReactSlidingPane.propTypes = {
   className: prop_types_default.a.string,
   overlayClassName: prop_types_default.a.string,
   from: prop_types_default.a.oneOf(['left', 'right', 'bottom']),
-  width: prop_types_default.a.string
+  width: prop_types_default.a.string,
+  closeIcon: prop_types_default.a.any
 };
 // CONCATENATED MODULE: ./docs/src/app.js
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
