@@ -6,7 +6,7 @@ Features:
  * Outside click or left top arrow click to close
  * Efficient: pane content is not rendered when pane is closed
  * Based on react-modal
- * Small — 2.5 Kb minified (+ react, react-modal)
+ * Small — 1.8 Kb minified (+ react, react-modal)
 
 See [changelog](https://dimitrydushkin.github.io/sliding-pane/CHANGELOG.md).
 

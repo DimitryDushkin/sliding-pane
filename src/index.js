@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
-import './index.styl';
+import './index.css';
 
 const CLOSE_TIMEOUT = 500;
 
