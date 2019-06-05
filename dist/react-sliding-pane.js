@@ -1,10 +1,6 @@
-'use strict';
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var React = _interopDefault(require('react'));
-var PropTypes = _interopDefault(require('prop-types'));
-var Modal = _interopDefault(require('react-modal'));
+import React from 'react';
+import PropTypes from 'prop-types';
+import Modal from 'react-modal';
 
 var CLOSE_TIMEOUT = 500;
 function ReactSlidingPane(_ref) {
@@ -39,14 +35,7 @@ function ReactSlidingPane(_ref) {
   }, React.createElement("div", {
     className: "slide-pane__close",
     onClick: onRequestClose
-  }, closeIcon ? closeIcon : React.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 13 22"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    fillRule: "evenodd",
-    d: "M4 11l8 8c.6.5.6 1.5 0 2-.5.6-1.5.6-2 0l-9-9c-.6-.5-.6-1.5 0-2l9-9c.5-.6 1.5-.6 2 0 .6.5.6 1.5 0 2l-8 8z"
-  }))), React.createElement("div", {
+  }, closeIcon ? closeIcon : React.createElement(IconClose, null)), React.createElement("div", {
     className: "slide-pane__title-wrapper"
   }, React.createElement("h2", {
     className: "slide-pane__title"
@@ -70,4 +59,15 @@ ReactSlidingPane.propTypes = {
   closeIcon: PropTypes.any
 };
 
-module.exports = ReactSlidingPane;
+function IconClose() {
+  return React.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 13 22"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    fillRule: "evenodd",
+    d: "M4 11l8 8c.6.5.6 1.5 0 2-.5.6-1.5.6-2 0l-9-9c-.6-.5-.6-1.5 0-2l9-9c.5-.6 1.5-.6 2 0 .6.5.6 1.5 0 2l-8 8z"
+  }));
+}
+
+export default ReactSlidingPane;

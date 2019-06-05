@@ -94,7 +94,7 @@
 }
 .slide-pane__content {
   position: relative;
-  overflow-y: auto;
+  overflow-y: visible;
   padding: 24px 32px;
   flex: 1 1 auto;
 }

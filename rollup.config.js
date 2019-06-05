@@ -7,7 +7,7 @@ export default {
     input: 'src/index.js',
     output: {
         file: 'dist/react-sliding-pane.js',
-        format: 'cjs'
+        format: 'esm',
     },
     external: [
         'react',

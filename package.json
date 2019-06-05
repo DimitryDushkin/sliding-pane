@@ -5,7 +5,7 @@
   "main": "dist/react-sliding-pane.js",
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "docs": "NODE_ENV=production rollup -c rollup-docs.config.js",
+    "docs": "rollup -c rollup-docs.config.js",
     "lint": "eslint ./src"
   },
   "registry": "https://registry.npmjs.org/",

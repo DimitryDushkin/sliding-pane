@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import Modal from 'react-modal';
 // import SlidingPane from 'react-sliding-pane';
 // import 'react-sliding-pane/dist/react-sliding-pane.css';
-import SlidingPane from '../../src/index.js';
-import '../../src/index.css';
+import SlidingPane from '../../dist/react-sliding-pane.js';
+import '../../dist/react-sliding-pane.css';
 
 class App extends Component {
     constructor(props) {
@@ -49,7 +49,7 @@ class App extends Component {
                 from='left'
                 width='200px'
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
-                <div>And I am pane content on left.</div>
+                <div style={{height: '110vh'}}>And I am pane content on left.</div>
             </SlidingPane>
             <SlidingPane
                 isOpen={ this.state.isPaneOpenBottom }
