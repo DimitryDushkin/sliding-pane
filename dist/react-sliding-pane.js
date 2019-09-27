@@ -32,9 +32,6 @@ function ReactSlidingPane(_ref) {
     contentLabel: "Modal \"".concat(title || '', "\"")
   }, React.createElement("div", {
     className: "slide-pane__header"
-  }, React.createElement("div", {
-    className: "slide-pane__close",
-    onClick: onRequestClose
   }, closeIcon ? closeIcon : React.createElement(IconClose, null)), React.createElement("div", {
     className: "slide-pane__title-wrapper"
   }, React.createElement("h2", {
@@ -42,6 +39,9 @@ function ReactSlidingPane(_ref) {
   }, title), React.createElement("div", {
     className: "slide-pane__subtitle"
   }, subtitle))), React.createElement("div", {
+    className: "slide-pane__close",
+    onClick: onRequestClose
+  }, React.createElement("div", {
     className: "slide-pane__content"
   }, children));
 }
@@ -62,11 +62,13 @@ ReactSlidingPane.propTypes = {
 function IconClose() {
   return React.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 13 22"
+    viewBox: "0 0 32 32"
   }, React.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
-    d: "M4 11l8 8c.6.5.6 1.5 0 2-.5.6-1.5.6-2 0l-9-9c-.6-.5-.6-1.5 0-2l9-9c.5-.6 1.5-.6 2 0 .6.5.6 1.5 0 2l-8 8z"
+    stroke:"black",
+    strokeWidth:"2",
+    d: "M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"
   }));
 }
 
