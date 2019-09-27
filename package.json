@@ -11,7 +11,7 @@
   "registry": "https://registry.npmjs.org/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DimitryDushkin/sliding-pane.git"
+    "url": "git@github.com:chkBmcgregor/sliding-pane.git"
   },
   "keywords": [
     "react",
