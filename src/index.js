@@ -17,7 +17,8 @@ export default function ReactSlidingPane({
     overlayClassName,
     closeIcon,
     from = 'right',
-    width
+    width,
+    shouldCloseOnEsc
 }) {
     const directionClass = `slide-pane_from_${from}`;
 
@@ -29,6 +30,7 @@ export default function ReactSlidingPane({
         overlayClassName={ `slide-pane__overlay ${overlayClassName || ''}`}
         closeTimeoutMS={ CLOSE_TIMEOUT }
         isOpen={ isOpen }
+        shouldCloseOnEsc={ shouldCloseOnEsc }
         onAfterOpen={ onAfterOpen }
         onRequestClose={ onRequestClose }
         contentLabel={ `Modal "${title || ''}"` }>
@@ -58,7 +60,8 @@ ReactSlidingPane.propTypes = {
     overlayClassName: PropTypes.string,
     from: PropTypes.oneOf(['left', 'right', 'bottom']),
     width: PropTypes.string,
-    closeIcon: PropTypes.any
+    closeIcon: PropTypes.any,
+    shouldCloseOnEsc: PropTypes.bool,
 };
 
 function IconClose() {
