@@ -1,6 +1,6 @@
 ### 4.0.0
 
-- Switch Webpack -> Rollup, dist size 2.5 Kb -> 1.5 Kb
+- Switch Webpack -> Rollup, dist size 2.5 Kb -> 1.5 Kb for ES Modules build.
 - Added shouldCloseOnEsc props by @eyaldouwma
 - Lil fix by @asliwinski
 
