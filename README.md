@@ -14,10 +14,10 @@ See [changelog](https://dimitrydushkin.github.io/sliding-pane/CHANGELOG.md).
 
 [![npm version](https://badge.fury.io/js/react-sliding-pane.svg)](https://badge.fury.io/js/react-sliding-pane)
 
-Thanks BrowserStack for support!
 <a href="https://www.browserstack.com/">
     <img src="https://raw.githubusercontent.com/DimitryDushkin/sliding-pane/master/docs/browserstack-logo.png" width="300" title="Thanks to BrowserStack" />
 </a>
+Thanks BrowserStack for support!
 
 ### [Open demo](https://dimitrydushkin.github.io/sliding-pane/example.html)
 <a href="https://dimitrydushkin.github.io/sliding-pane/example.html">
