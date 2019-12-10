@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "docs": "rollup -c rollup-docs.config.js",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "prepublishOnly": "echo \"BUILD BEFORE PUBLISH\"; npm run build"
   },
   "registry": "https://registry.npmjs.org/",
   "repository": {
