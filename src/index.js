@@ -36,7 +36,7 @@ export default function ReactSlidingPane({
         contentLabel={ `Modal "${title || ''}"` }>
         <div className='slide-pane__header'>
             <div className='slide-pane__close' onClick={ onRequestClose }>
-              { closeIcon ? closeIcon : <IconClose /> }
+              { closeIcon || <IconClose /> }
             </div>
             <div className='slide-pane__title-wrapper'>
                 <h2 className='slide-pane__title'>{ title }</h2>
