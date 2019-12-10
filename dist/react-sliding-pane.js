@@ -15,7 +15,8 @@ function ReactSlidingPane(_ref) {
       closeIcon = _ref.closeIcon,
       _ref$from = _ref.from,
       from = _ref$from === void 0 ? 'right' : _ref$from,
-      width = _ref.width;
+      width = _ref.width,
+      shouldCloseOnEsc = _ref.shouldCloseOnEsc;
   var directionClass = "slide-pane_from_".concat(from);
   return React.createElement(Modal, {
     className: "slide-pane ".concat(directionClass, " ").concat(className || ''),
@@ -27,6 +28,7 @@ function ReactSlidingPane(_ref) {
     overlayClassName: "slide-pane__overlay ".concat(overlayClassName || ''),
     closeTimeoutMS: CLOSE_TIMEOUT,
     isOpen: isOpen,
+    shouldCloseOnEsc: shouldCloseOnEsc,
     onAfterOpen: onAfterOpen,
     onRequestClose: onRequestClose,
     contentLabel: "Modal \"".concat(title || '', "\"")
@@ -35,7 +37,7 @@ function ReactSlidingPane(_ref) {
   }, React.createElement("div", {
     className: "slide-pane__close",
     onClick: onRequestClose
-  }, closeIcon ? closeIcon : React.createElement(IconClose, null)), React.createElement("div", {
+  }, closeIcon || React.createElement(IconClose, null)), React.createElement("div", {
     className: "slide-pane__title-wrapper"
   }, React.createElement("h2", {
     className: "slide-pane__title"
@@ -56,7 +58,8 @@ ReactSlidingPane.propTypes = {
   overlayClassName: PropTypes.string,
   from: PropTypes.oneOf(['left', 'right', 'bottom']),
   width: PropTypes.string,
-  closeIcon: PropTypes.any
+  closeIcon: PropTypes.any,
+  shouldCloseOnEsc: PropTypes.bool
 };
 
 function IconClose() {
