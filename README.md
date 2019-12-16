@@ -9,7 +9,7 @@ Features:
  * Close on escape support
  * Small — 1.5 Kb non-minified (+ react, react-modal)
 
-See [changelog](https://dimitrydushkin.github.io/sliding-pane/CHANGELOG.md).
+See [changelog](https://github.com/DimitryDushkin/sliding-pane/blob/master/CHANGELOG.md).
 
 
 [![npm version](https://badge.fury.io/js/react-sliding-pane.svg)](https://badge.fury.io/js/react-sliding-pane)
