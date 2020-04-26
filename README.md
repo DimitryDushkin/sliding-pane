@@ -3,6 +3,7 @@ Pane that slides out of the window side. Like panes from Google Tag Manager.
 
 Features:
  * Animated open-close
+ * Smooth animation based on CSS translate
  * Outside click or left top arrow click to close
  * Efficient: pane content is not rendered when pane is closed
  * Based on react-modal
