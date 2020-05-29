@@ -18,7 +18,7 @@ function ReactSlidingPane(_ref) {
       width = _ref.width,
       shouldCloseOnEsc = _ref.shouldCloseOnEsc;
   var directionClass = "slide-pane_from_".concat(from);
-  return React.createElement(Modal, {
+  return /*#__PURE__*/React.createElement(Modal, {
     ariaHideApp: false,
     className: "slide-pane ".concat(directionClass, " ").concat(className || ''),
     style: {
@@ -33,18 +33,18 @@ function ReactSlidingPane(_ref) {
     onAfterOpen: onAfterOpen,
     onRequestClose: onRequestClose,
     contentLabel: "Modal \"".concat(title || '', "\"")
-  }, React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "slide-pane__header"
-  }, React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "slide-pane__close",
     onClick: onRequestClose
-  }, closeIcon || React.createElement(IconClose, null)), React.createElement("div", {
+  }, closeIcon || /*#__PURE__*/React.createElement(IconClose, null)), /*#__PURE__*/React.createElement("div", {
     className: "slide-pane__title-wrapper"
-  }, React.createElement("h2", {
+  }, /*#__PURE__*/React.createElement("h2", {
     className: "slide-pane__title"
-  }, title), React.createElement("div", {
+  }, title), /*#__PURE__*/React.createElement("div", {
     className: "slide-pane__subtitle"
-  }, subtitle))), React.createElement("div", {
+  }, subtitle))), /*#__PURE__*/React.createElement("div", {
     className: "slide-pane__content"
   }, children));
 }
@@ -64,10 +64,10 @@ ReactSlidingPane.propTypes = {
 };
 
 function IconClose() {
-  return React.createElement("svg", {
+  return /*#__PURE__*/React.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 13 22"
-  }, React.createElement("path", {
+  }, /*#__PURE__*/React.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M4 11l8 8c.6.5.6 1.5 0 2-.5.6-1.5.6-2 0l-9-9c-.6-.5-.6-1.5 0-2l9-9c.5-.6 1.5-.6 2 0 .6.5.6 1.5 0 2l-8 8z"
