@@ -19,6 +19,7 @@ function ReactSlidingPane(_ref) {
       shouldCloseOnEsc = _ref.shouldCloseOnEsc;
   var directionClass = "slide-pane_from_".concat(from);
   return React.createElement(Modal, {
+    ariaHideApp: false,
     className: "slide-pane ".concat(directionClass, " ").concat(className || ''),
     style: {
       content: {
