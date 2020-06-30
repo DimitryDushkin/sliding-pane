@@ -48,6 +48,7 @@ class App extends Component {
           from="left"
           width="200px"
           onRequestClose={() => this.setState({ isPaneOpenLeft: false })}
+          hideHeader={true}
         >
           <div style={{ height: "110vh" }}>And I am pane content on left.</div>
         </SlidingPane>
