@@ -1,9 +1,11 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var _pt = _interopDefault(require('prop-types'));
 var React = _interopDefault(require('react'));
-var PropTypes = _interopDefault(require('prop-types'));
 var Modal = _interopDefault(require('react-modal'));
 
 var CLOSE_TIMEOUT = 500;
@@ -18,26 +20,28 @@ function ReactSlidingPane(_ref) {
       overlayClassName = _ref.overlayClassName,
       closeIcon = _ref.closeIcon,
       _ref$from = _ref.from,
-      from = _ref$from === void 0 ? 'right' : _ref$from,
+      from = _ref$from === void 0 ? "right" : _ref$from,
       width = _ref.width,
-      shouldCloseOnEsc = _ref.shouldCloseOnEsc;
+      shouldCloseOnEsc = _ref.shouldCloseOnEsc,
+      _ref$hideHeader = _ref.hideHeader,
+      hideHeader = _ref$hideHeader === void 0 ? false : _ref$hideHeader;
   var directionClass = "slide-pane_from_".concat(from);
   return /*#__PURE__*/React.createElement(Modal, {
     ariaHideApp: false,
-    className: "slide-pane ".concat(directionClass, " ").concat(className || ''),
+    className: "slide-pane ".concat(directionClass, " ").concat(className || ""),
     style: {
       content: {
-        width: width || '80%'
+        width: width || "80%"
       }
     },
-    overlayClassName: "slide-pane__overlay ".concat(overlayClassName || ''),
+    overlayClassName: "slide-pane__overlay ".concat(overlayClassName || ""),
     closeTimeoutMS: CLOSE_TIMEOUT,
     isOpen: isOpen,
     shouldCloseOnEsc: shouldCloseOnEsc,
     onAfterOpen: onAfterOpen,
     onRequestClose: onRequestClose,
-    contentLabel: "Modal \"".concat(title || '', "\"")
-  }, /*#__PURE__*/React.createElement("div", {
+    contentLabel: "Modal \"".concat(title || "", "\"")
+  }, !hideHeader && /*#__PURE__*/React.createElement("div", {
     className: "slide-pane__header"
   }, /*#__PURE__*/React.createElement("div", {
     className: "slide-pane__close",
@@ -53,18 +57,19 @@ function ReactSlidingPane(_ref) {
   }, children));
 }
 ReactSlidingPane.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  title: PropTypes.any,
-  subtitle: PropTypes.any,
-  onRequestClose: PropTypes.func,
-  onAfterOpen: PropTypes.func,
-  children: PropTypes.any.isRequired,
-  className: PropTypes.string,
-  overlayClassName: PropTypes.string,
-  from: PropTypes.oneOf(['left', 'right', 'bottom']),
-  width: PropTypes.string,
-  closeIcon: PropTypes.any,
-  shouldCloseOnEsc: PropTypes.bool
+  isOpen: _pt.bool.isRequired,
+  title: _pt.string.isRequired,
+  subtitle: _pt.string,
+  from: _pt.oneOf(["left", "right", "bottom"]),
+  children: _pt.node.isRequired,
+  className: _pt.string,
+  overlayClassName: _pt.string,
+  width: _pt.string,
+  closeIcon: _pt.node,
+  shouldCloseOnEsc: _pt.bool,
+  hideHeader: _pt.bool,
+  onRequestClose: _pt.func,
+  onAfterOpen: _pt.func
 };
 
 function IconClose() {
@@ -78,4 +83,5 @@ function IconClose() {
   }));
 }
 
-module.exports = ReactSlidingPane;
+exports.ReactSlidingPane = ReactSlidingPane;
+exports.default = ReactSlidingPane;

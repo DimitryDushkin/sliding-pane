@@ -1,3 +1,7 @@
+### 5.1.0
+
+- Add hideHeader option
+
 ### 5.0.0
 
 - Switch dist output to CommonJS module
