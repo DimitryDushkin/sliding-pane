@@ -11,6 +11,7 @@ Features:
 - Based on react-modal
 - Close on escape support
 - Small — 1.5 Kb non-minified (+ react, react-modal)
+- Typescript support
 
 See [changelog](https://github.com/DimitryDushkin/sliding-pane/blob/master/CHANGELOG.md).
 
