@@ -1,3 +1,8 @@
+### 5.0.0
+
+- Switch dist output to CommonJS module
+- Update docs
+
 ### 4.1.0
 
 - Update deps
