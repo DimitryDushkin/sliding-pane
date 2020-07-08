@@ -23,7 +23,11 @@ See [changelog](https://github.com/DimitryDushkin/sliding-pane/blob/master/CHANG
 
 Thanks BrowserStack for support!
 
-### [Open demo](https://dimitrydushkin.github.io/sliding-pane/example.html)
+- [React Sliding Pane](#react-sliding-pane)
+  - [When to use (UX)](#when-to-use-ux)
+  - [How to use](#how-to-use)
+  - [Properties](#properties)
+  - [How to develop](#how-to-develop)
 
 <a href="https://dimitrydushkin.github.io/sliding-pane/example.html">
     <img src="https://raw.githubusercontent.com/DimitryDushkin/sliding-pane/master/docs/react-sliding-pane-screenshot.png" width="600" />
@@ -92,6 +96,24 @@ const App = () => {
 
 render(<App />, document.getElementById("app"));
 ```
+
+### Properties
+
+| Prop             | Required | Default |                                Description |
+| ---------------- | :------: | ------: | -----------------------------------------: |
+| isOpen           |    ✅    |         |                               Is pane open |
+| title            |          |         |                            Title in header |
+| subtitle         |          |         |                         Subtitle in header |
+| from             |          | "right" |            Direction from pane will appear |
+| children         |          |         |                            Content of pane |
+| className        |          |         |            CSS class name. See react-modal |
+| overlayClassName |          |         | CSS class name of overlay. See react-modal |
+| width            |          |         |                 CSS string for width pane. |
+| closeIcon        |          |         |                          Custom close icon |
+| shouldCloseOnEsc |          |         |                   Enable pane close on ESC |
+| hideHeader       |          |         |                           Hide pane header |
+| onRequestClose   |    ✅    |         |                 Called on close icon press |
+| onAfterOpen      |          |         |                          Called after open |
 
 ### How to develop
 

@@ -7,7 +7,7 @@ const CLOSE_TIMEOUT = 500;
 
 type Props = {
   isOpen: boolean;
-  title: string;
+  title?: string;
   subtitle?: string;
   from?: "left" | "right" | "bottom"; // "right" — default
   children: React.ReactNode;
@@ -17,7 +17,7 @@ type Props = {
   closeIcon?: React.ReactNode;
   shouldCloseOnEsc?: boolean;
   hideHeader?: boolean;
-  onRequestClose?: () => void;
+  onRequestClose: () => void;
   onAfterOpen?: () => void;
 };
 
