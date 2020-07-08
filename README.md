@@ -25,10 +25,15 @@ See [changelog](https://github.com/DimitryDushkin/sliding-pane/blob/master/CHANG
 Thanks BrowserStack for support!
 
 - [React Sliding Pane](#react-sliding-pane)
+  - [Example](#example)
   - [When to use (UX)](#when-to-use-ux)
   - [How to use](#how-to-use)
   - [Properties](#properties)
   - [How to develop](#how-to-develop)
+
+### Example
+
+[Try example](https://dimitrydushkin.github.io/sliding-pane/example.html)
 
 <a href="https://dimitrydushkin.github.io/sliding-pane/example.html">
     <img src="https://raw.githubusercontent.com/DimitryDushkin/sliding-pane/master/docs/react-sliding-pane-screenshot.png" width="600" />
