@@ -58,7 +58,7 @@ function ReactSlidingPane(_ref) {
 }
 ReactSlidingPane.propTypes = {
   isOpen: _pt.bool.isRequired,
-  title: _pt.string.isRequired,
+  title: _pt.string,
   subtitle: _pt.string,
   from: _pt.oneOf(["left", "right", "bottom"]),
   children: _pt.node.isRequired,
@@ -68,7 +68,7 @@ ReactSlidingPane.propTypes = {
   closeIcon: _pt.node,
   shouldCloseOnEsc: _pt.bool,
   hideHeader: _pt.bool,
-  onRequestClose: _pt.func,
+  onRequestClose: _pt.func.isRequired,
   onAfterOpen: _pt.func
 };
 

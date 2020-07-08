@@ -10,8 +10,9 @@ Features:
 - Efficient: pane content is not rendered when pane is closed
 - Based on react-modal
 - Close on escape support
-- Small — 1.5 Kb non-minified (+ react, react-modal)
 - Typescript support
+- Runtime props validation in dev via "prop-types"
+- Small — 1.5 Kb non-minified (+ react, react-modal)
 
 See [changelog](https://github.com/DimitryDushkin/sliding-pane/blob/master/CHANGELOG.md).
 
