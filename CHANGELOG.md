@@ -1,6 +1,11 @@
+### 6.0.0
+
+- Rewrite to Typescript
+- Provide d.ts
+
 ### 5.1.0
 
-- Add hideHeader option
+- Add hideHeader option (thx [Banuni](https://github.com/banuni)) https://github.com/DimitryDushkin/sliding-pane/pull/43
 
 ### 5.0.0
 
