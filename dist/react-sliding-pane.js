@@ -1,6 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Modal from 'react-modal';
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = _interopDefault(require('react'));
+var PropTypes = _interopDefault(require('prop-types'));
+var Modal = _interopDefault(require('react-modal'));
 
 var CLOSE_TIMEOUT = 500;
 function ReactSlidingPane(_ref) {
@@ -74,4 +78,4 @@ function IconClose() {
   }));
 }
 
-export default ReactSlidingPane;
+module.exports = ReactSlidingPane;
