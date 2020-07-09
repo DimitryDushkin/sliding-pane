@@ -24,12 +24,13 @@ See [changelog](https://github.com/DimitryDushkin/sliding-pane/blob/master/CHANG
 
 Thanks BrowserStack for support!
 
-- [React Sliding Pane](#react-sliding-pane)
-  - [Example](#example)
-  - [When to use (UX)](#when-to-use-ux)
-  - [How to use](#how-to-use)
-  - [Properties](#properties)
-  - [How to develop](#how-to-develop)
+### Table of contents
+
+- [Example](#example)
+- [When to use (UX)](#when-to-use-ux)
+- [How to use](#how-to-use)
+- [Properties](#properties)
+- [How to develop](#how-to-develop)
 
 ### Example
 
