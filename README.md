@@ -12,11 +12,13 @@ Features:
 - Close on escape support
 - Typescript support
 - Runtime props validation in dev via "prop-types"
-- Small — 1.5 Kb non-minified (+ react, react-modal)
+- Small — 7.1 Kb gzip (react-sliding-pane + react-modal as dependency)
 
 See [changelog](https://github.com/DimitryDushkin/sliding-pane/blob/master/CHANGELOG.md).
 
-[![npm version](https://badge.fury.io/js/react-sliding-pane.svg)](https://badge.fury.io/js/react-sliding-pane)
+[![npm version](https://badgen.net/npm/v/react-sliding-pane?color=green&label=npm%20package)](https://www.npmjs.com/package/react-sliding-pane)
+[![downloads per week](https://badgen.net/npm/dw/react-sliding-pane)](https://www.npmjs.com/package/react-sliding-pane)
+[![bundle size](https://badgen.net/bundlephobia/minzip/react-sliding-pane)](https://bundlephobia.com/result?p=react-sliding-pane@6.1.0)
 
 <a href="https://www.browserstack.com/">
     <img src="https://raw.githubusercontent.com/DimitryDushkin/sliding-pane/master/docs/browserstack-logo.png" width="300" title="Thanks to BrowserStack" />
