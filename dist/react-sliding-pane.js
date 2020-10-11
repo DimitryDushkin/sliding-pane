@@ -58,8 +58,8 @@ function ReactSlidingPane(_ref) {
 }
 ReactSlidingPane.propTypes = {
   isOpen: _pt.bool.isRequired,
-  title: _pt.string,
-  subtitle: _pt.string,
+  title: _pt.node,
+  subtitle: _pt.node,
   from: _pt.oneOf(["left", "right", "bottom"]),
   children: _pt.node.isRequired,
   className: _pt.string,

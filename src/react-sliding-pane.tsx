@@ -7,8 +7,8 @@ const CLOSE_TIMEOUT = 500;
 
 type Props = {
   isOpen: boolean;
-  title?: string;
-  subtitle?: string;
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
   from?: "left" | "right" | "bottom"; // "right" — default
   children: React.ReactNode;
   className?: string;
