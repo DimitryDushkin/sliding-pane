@@ -2,8 +2,8 @@ import React from "react";
 import "./react-sliding-pane.css";
 declare type Props = {
     isOpen: boolean;
-    title?: string;
-    subtitle?: string;
+    title?: React.ReactNode;
+    subtitle?: React.ReactNode;
     from?: "left" | "right" | "bottom";
     children: React.ReactNode;
     className?: string;
