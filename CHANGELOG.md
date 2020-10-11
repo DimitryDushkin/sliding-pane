@@ -1,3 +1,7 @@
+### 6.1.1
+
+- Correct types for some props
+
 ### 6.0.0
 
 - Rewrite to Typescript
