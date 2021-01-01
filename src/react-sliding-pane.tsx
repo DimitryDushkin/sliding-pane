@@ -19,6 +19,7 @@ type Props = {
   hideHeader?: boolean;
   onRequestClose: () => void;
   onAfterOpen?: () => void;
+  onAfterClose?: () => void;
 };
 
 export function ReactSlidingPane({
@@ -27,6 +28,7 @@ export function ReactSlidingPane({
   subtitle,
   onRequestClose,
   onAfterOpen,
+  onAfterClose,
   children,
   className,
   overlayClassName,
@@ -38,18 +40,46 @@ export function ReactSlidingPane({
 }: Props) {
   const directionClass = `slide-pane_from_${from}`;
 
+  // Reduce bundle size by removing polyfill if array destruction
+  const state = React.useState(false);
+  const wasOpen = state[0];
+  const setWasOpen = state[1];
+
+  const handleAfterOpen = React.useCallback(() => {
+    setTimeout(() => {
+      setWasOpen(true);
+      onAfterOpen?.();
+    }, 0);
+  }, [onAfterOpen]);
+
+  const handleAfterClose = React.useCallback(() => {
+    setTimeout(() => {
+      setWasOpen(false);
+      onAfterClose?.();
+    }, 0);
+  }, [onAfterClose]);
+
   return (
     <Modal
       ariaHideApp={false}
-      className={`slide-pane ${directionClass} ${className || ""}`}
+      overlayClassName={{
+        base: `slide-pane__overlay ${overlayClassName || ""}`,
+        afterOpen: wasOpen ? "overlay-after-open" : '',
+        beforeClose: "overlay-before-close"
+      }}
+      className={{
+        base: `slide-pane ${directionClass} ${className || ""}`,
+        afterOpen: wasOpen ? "content-after-open" : '',
+        beforeClose: "content-before-close"
+      }}
       style={{
         content: { width: width || "80%" },
       }}
-      overlayClassName={`slide-pane__overlay ${overlayClassName || ""}`}
       closeTimeoutMS={CLOSE_TIMEOUT}
       isOpen={isOpen}
       shouldCloseOnEsc={shouldCloseOnEsc}
-      onAfterOpen={onAfterOpen}
+      onAfterOpen={handleAfterOpen}
+      onAfterClose={handleAfterClose}
       onRequestClose={onRequestClose}
       contentLabel={`Modal "${title || ""}"`}
     >

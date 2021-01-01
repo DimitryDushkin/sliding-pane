@@ -835,11 +835,13 @@
 
   /* eslint-disable no-console */
   function returnFocus() {
+    var preventScroll = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
     var toFocus = null;
     try {
       if (focusLaterElements.length !== 0) {
         toFocus = focusLaterElements.pop();
-        toFocus.focus();
+        toFocus.focus({ preventScroll: preventScroll });
       }
       return;
     } catch (e) {
@@ -1354,8 +1356,6 @@
 
 
 
-  var _react2 = _interopRequireDefault(react);
-
 
 
   var _propTypes2 = _interopRequireDefault(propTypes);
@@ -1449,7 +1449,7 @@
 
         if (_this.props.shouldFocusAfterRender) {
           if (_this.props.shouldReturnFocusAfterClose) {
-            focusManager$1.returnFocus();
+            focusManager$1.returnFocus(_this.props.preventScroll);
             focusManager$1.teardownScopedFocus();
           } else {
             focusManager$1.popWithoutFocus();
@@ -1496,7 +1496,7 @@
       };
 
       _this.focusContent = function () {
-        return _this.content && !_this.contentHasFocus() && _this.content.focus();
+        return _this.content && !_this.contentHasFocus() && _this.content.focus({ preventScroll: true });
       };
 
       _this.closeWithTimeout = function () {
@@ -1670,40 +1670,42 @@
             id = _props2.id,
             className = _props2.className,
             overlayClassName = _props2.overlayClassName,
-            defaultStyles = _props2.defaultStyles;
+            defaultStyles = _props2.defaultStyles,
+            children = _props2.children;
 
         var contentStyles = className ? {} : defaultStyles.content;
         var overlayStyles = overlayClassName ? {} : defaultStyles.overlay;
 
-        return this.shouldBeClosed() ? null : _react2.default.createElement(
-          "div",
-          {
-            ref: this.setOverlayRef,
-            className: this.buildClassName("overlay", overlayClassName),
-            style: _extends({}, overlayStyles, this.props.style.overlay),
-            onClick: this.handleOverlayOnClick,
-            onMouseDown: this.handleOverlayOnMouseDown
-          },
-          _react2.default.createElement(
-            "div",
-            _extends({
-              id: id,
-              ref: this.setContentRef,
-              style: _extends({}, contentStyles, this.props.style.content),
-              className: this.buildClassName("content", className),
-              tabIndex: "-1",
-              onKeyDown: this.handleKeyDown,
-              onMouseDown: this.handleContentOnMouseDown,
-              onMouseUp: this.handleContentOnMouseUp,
-              onClick: this.handleContentOnClick,
-              role: this.props.role,
-              "aria-label": this.props.contentLabel
-            }, this.attributesFromObject("aria", this.props.aria || {}), this.attributesFromObject("data", this.props.data || {}), {
-              "data-testid": this.props.testId
-            }),
-            this.props.children
-          )
-        );
+        if (this.shouldBeClosed()) {
+          return null;
+        }
+
+        var overlayProps = {
+          ref: this.setOverlayRef,
+          className: this.buildClassName("overlay", overlayClassName),
+          style: _extends({}, overlayStyles, this.props.style.overlay),
+          onClick: this.handleOverlayOnClick,
+          onMouseDown: this.handleOverlayOnMouseDown
+        };
+
+        var contentProps = _extends({
+          id: id,
+          ref: this.setContentRef,
+          style: _extends({}, contentStyles, this.props.style.content),
+          className: this.buildClassName("content", className),
+          tabIndex: "-1",
+          onKeyDown: this.handleKeyDown,
+          onMouseDown: this.handleContentOnMouseDown,
+          onMouseUp: this.handleContentOnMouseUp,
+          onClick: this.handleContentOnClick,
+          role: this.props.role,
+          "aria-label": this.props.contentLabel
+        }, this.attributesFromObject("aria", _extends({ modal: true }, this.props.aria)), this.attributesFromObject("data", this.props.data || {}), {
+          "data-testid": this.props.testId
+        });
+
+        var contentElement = this.props.contentElement(contentProps, children);
+        return this.props.overlayElement(overlayProps, contentElement);
       }
     }]);
 
@@ -1740,6 +1742,7 @@
     shouldFocusAfterRender: _propTypes2.default.bool,
     shouldCloseOnOverlayClick: _propTypes2.default.bool,
     shouldReturnFocusAfterClose: _propTypes2.default.bool,
+    preventScroll: _propTypes2.default.bool,
     role: _propTypes2.default.string,
     contentLabel: _propTypes2.default.string,
     aria: _propTypes2.default.object,
@@ -1749,6 +1752,8 @@
     overlayRef: _propTypes2.default.func,
     contentRef: _propTypes2.default.func,
     id: _propTypes2.default.string,
+    overlayElement: _propTypes2.default.func,
+    contentElement: _propTypes2.default.func,
     testId: _propTypes2.default.string
   };
   exports.default = ModalPortal;
@@ -1969,7 +1974,7 @@
   var portalClassName = exports.portalClassName = "ReactModalPortal";
   var bodyOpenClassName = exports.bodyOpenClassName = "ReactModal__Body--open";
 
-  var isReact16 = _reactDom2.default.createPortal !== undefined;
+  var isReact16 = safeHTMLElement.canUseDOM && _reactDom2.default.createPortal !== undefined;
 
   var getCreatePortal = function getCreatePortal() {
     return isReact16 ? _reactDom2.default.createPortal : _reactDom2.default.unstable_renderSubtreeIntoContainer;
@@ -1996,7 +2001,7 @@
       return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.removePortal = function () {
         !isReact16 && _reactDom2.default.unmountComponentAtNode(_this.node);
         var parent = getParentElement(_this.props.parentSelector);
-        if (parent) {
+        if (parent && parent.contains(_this.node)) {
           parent.removeChild(_this.node);
         } else {
           // eslint-disable-next-line no-console
@@ -2137,6 +2142,7 @@
     shouldFocusAfterRender: _propTypes2.default.bool,
     shouldCloseOnOverlayClick: _propTypes2.default.bool,
     shouldReturnFocusAfterClose: _propTypes2.default.bool,
+    preventScroll: _propTypes2.default.bool,
     parentSelector: _propTypes2.default.func,
     aria: _propTypes2.default.object,
     data: _propTypes2.default.object,
@@ -2144,7 +2150,10 @@
     contentLabel: _propTypes2.default.string,
     shouldCloseOnEsc: _propTypes2.default.bool,
     overlayRef: _propTypes2.default.func,
-    contentRef: _propTypes2.default.func
+    contentRef: _propTypes2.default.func,
+    id: _propTypes2.default.string,
+    overlayElement: _propTypes2.default.func,
+    contentElement: _propTypes2.default.func
   };
   Modal.defaultProps = {
     isOpen: false,
@@ -2157,8 +2166,23 @@
     shouldCloseOnEsc: true,
     shouldCloseOnOverlayClick: true,
     shouldReturnFocusAfterClose: true,
+    preventScroll: false,
     parentSelector: function parentSelector() {
       return document.body;
+    },
+    overlayElement: function overlayElement(props, contentEl) {
+      return _react2.default.createElement(
+        "div",
+        props,
+        contentEl
+      );
+    },
+    contentElement: function contentElement(props, children) {
+      return _react2.default.createElement(
+        "div",
+        props,
+        children
+      );
     }
   };
   Modal.defaultStyles = {
@@ -2241,7 +2265,7 @@
     }
   }
 
-  var css_248z = ".slide-pane {\n  display: flex;\n  flex-direction: column;\n  background: #fff;\n  min-width: 100px;\n  height: 100%;\n  box-shadow: 0 8px 8px rgba(0,0,0,0.5);\n  transition: transform 0.5s;\n  will-change: transform;\n}\n.slide-pane:focus {\n  outline-style: none;\n}\n.slide-pane_from_right {\n  margin-left: auto;\n  transform: translateX(100%);\n}\n.slide-pane_from_right.ReactModal__Content--after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_right.ReactModal__Content--before-close {\n  transform: translateX(100%);\n}\n.slide-pane_from_left {\n  margin-right: auto;\n  transform: translateX(-100%);\n}\n.slide-pane_from_left.ReactModal__Content--after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_left.ReactModal__Content--before-close {\n  transform: translateX(-100%);\n}\n.slide-pane_from_bottom {\n  height: 90vh;\n  margin-top: 10vh;\n  transform: translateY(100%);\n}\n.slide-pane_from_bottom.ReactModal__Content--after-open {\n  transform: translateY(0%);\n}\n.slide-pane_from_bottom.ReactModal__Content--before-close {\n  transform: translateY(100%);\n}\n.slide-pane__overlay {\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  right: 0px;\n  bottom: 0px;\n  background-color: rgba(0,0,0,0);\n}\n.slide-pane__overlay.ReactModal__Overlay--after-open {\n  background-color: rgba(0,0,0,0.3);\n  transition: background-color 0.5s;\n}\n.slide-pane__overlay.ReactModal__Overlay--before-close {\n  background-color: rgba(0,0,0,0);\n}\n.slide-pane__header {\n  display: flex;\n  flex: 0 0 64px;\n  align-items: center;\n  background: #ebebeb;\n  height: 64px;\n  border-bottom: 1px solid rgba(0,0,0,0.1);\n}\n.slide-pane__title-wrapper {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  margin-left: 32px;\n  min-width: 0;\n}\n.slide-pane .slide-pane__title {\n  font-size: 18px;\n  font-weight: normal;\n  max-width: 80%;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin: 0;\n  padding: 0;\n}\n.slide-pane__close {\n  margin-left: 24px;\n  padding: 16px;\n  opacity: 0.7;\n  cursor: pointer;\n}\n.slide-pane__close svg {\n  width: 12px;\n  padding: 0;\n}\n.slide-pane__content {\n  position: relative;\n  overflow-y: auto;\n  padding: 24px 32px;\n  flex: 1 1 auto;\n}\n.slide-pane__subtitle {\n  font-size: 12px;\n  margin-top: 2px;\n}\n";
+  var css_248z = ".slide-pane {\n  display: flex;\n  flex-direction: column;\n  background: #fff;\n  min-width: 100px;\n  height: 100%;\n  box-shadow: 0 8px 8px rgba(0,0,0,0.5);\n  transition: transform 0.5s;\n  will-change: transform;\n}\n.slide-pane:focus {\n  outline-style: none;\n}\n.slide-pane_from_right {\n  margin-left: auto;\n  transform: translateX(100%);\n}\n.slide-pane_from_right.content-after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_right.content-before-close {\n  transform: translateX(100%);\n}\n.slide-pane_from_left {\n  margin-right: auto;\n  transform: translateX(-100%);\n}\n.slide-pane_from_left.content-after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_left.content-before-close {\n  transform: translateX(-100%);\n}\n.slide-pane_from_bottom {\n  height: 90vh;\n  margin-top: 10vh;\n  transform: translateY(100%);\n}\n.slide-pane_from_bottom.content-after-open {\n  transform: translateY(0%);\n}\n.slide-pane_from_bottom.content-before-close {\n  transform: translateY(100%);\n}\n.slide-pane__overlay {\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  right: 0px;\n  bottom: 0px;\n  background-color: rgba(0,0,0,0);\n}\n.slide-pane__overlay.overlay-after-open {\n  background-color: rgba(0,0,0,0.3);\n  transition: background-color 0.5s;\n}\n.slide-pane__overlay.overlay-before-close {\n  background-color: rgba(0,0,0,0);\n}\n.slide-pane__header {\n  display: flex;\n  flex: 0 0 64px;\n  align-items: center;\n  background: #ebebeb;\n  height: 64px;\n  border-bottom: 1px solid rgba(0,0,0,0.1);\n}\n.slide-pane__title-wrapper {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  margin-left: 32px;\n  min-width: 0;\n}\n.slide-pane .slide-pane__title {\n  font-size: 18px;\n  font-weight: normal;\n  max-width: 80%;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin: 0;\n  padding: 0;\n}\n.slide-pane__close {\n  margin-left: 24px;\n  padding: 16px;\n  opacity: 0.7;\n  cursor: pointer;\n}\n.slide-pane__close svg {\n  width: 12px;\n  padding: 0;\n}\n.slide-pane__content {\n  position: relative;\n  overflow-y: auto;\n  padding: 24px 32px;\n  flex: 1 1 auto;\n}\n.slide-pane__subtitle {\n  font-size: 12px;\n  margin-top: 2px;\n}\n";
   styleInject(css_248z);
 
   var CLOSE_TIMEOUT = 500;
@@ -2251,6 +2275,7 @@
         subtitle = _ref.subtitle,
         onRequestClose = _ref.onRequestClose,
         onAfterOpen = _ref.onAfterOpen,
+        onAfterClose = _ref.onAfterClose,
         children = _ref.children,
         className = _ref.className,
         overlayClassName = _ref.overlayClassName,
@@ -2261,20 +2286,45 @@
         shouldCloseOnEsc = _ref.shouldCloseOnEsc,
         _ref$hideHeader = _ref.hideHeader,
         hideHeader = _ref$hideHeader === void 0 ? false : _ref$hideHeader;
-    var directionClass = "slide-pane_from_".concat(from);
+    var directionClass = "slide-pane_from_".concat(from); // Reduce bundle size by removing polyfill if array destruction
+
+    var state = react.useState(false);
+    var wasOpen = state[0];
+    var setWasOpen = state[1];
+    var handleAfterOpen = react.useCallback(function () {
+      setTimeout(function () {
+        setWasOpen(true);
+        onAfterOpen === null || onAfterOpen === void 0 ? void 0 : onAfterOpen();
+      }, 0);
+    }, [onAfterOpen]);
+    var handleAfterClose = react.useCallback(function () {
+      setTimeout(function () {
+        setWasOpen(false);
+        onAfterClose === null || onAfterClose === void 0 ? void 0 : onAfterClose();
+      }, 0);
+    }, [onAfterClose]);
     return /*#__PURE__*/react.createElement(Modal, {
       ariaHideApp: false,
-      className: "slide-pane ".concat(directionClass, " ").concat(className || ""),
+      overlayClassName: {
+        base: "slide-pane__overlay ".concat(overlayClassName || ""),
+        afterOpen: wasOpen ? "overlay-after-open" : '',
+        beforeClose: "overlay-before-close"
+      },
+      className: {
+        base: "slide-pane ".concat(directionClass, " ").concat(className || ""),
+        afterOpen: wasOpen ? "content-after-open" : '',
+        beforeClose: "content-before-close"
+      },
       style: {
         content: {
           width: width || "80%"
         }
       },
-      overlayClassName: "slide-pane__overlay ".concat(overlayClassName || ""),
       closeTimeoutMS: CLOSE_TIMEOUT,
       isOpen: isOpen,
       shouldCloseOnEsc: shouldCloseOnEsc,
-      onAfterOpen: onAfterOpen,
+      onAfterOpen: handleAfterOpen,
+      onAfterClose: handleAfterClose,
       onRequestClose: onRequestClose,
       contentLabel: "Modal \"".concat(title || "", "\"")
     }, !hideHeader && /*#__PURE__*/react.createElement("div", {
@@ -2294,8 +2344,8 @@
   }
   ReactSlidingPane.propTypes = {
     isOpen: propTypes.bool.isRequired,
-    title: propTypes.string,
-    subtitle: propTypes.string,
+    title: propTypes.node,
+    subtitle: propTypes.node,
     from: propTypes.oneOf(["left", "right", "bottom"]),
     children: propTypes.node.isRequired,
     className: propTypes.string,
@@ -2305,7 +2355,8 @@
     shouldCloseOnEsc: propTypes.bool,
     hideHeader: propTypes.bool,
     onRequestClose: propTypes.func.isRequired,
-    onAfterOpen: propTypes.func
+    onAfterOpen: propTypes.func,
+    onAfterClose: propTypes.func
   };
 
   function IconClose() {
