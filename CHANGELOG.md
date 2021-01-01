@@ -1,3 +1,7 @@
+### 7.0
+- Fixes https://github.com/DimitryDushkin/sliding-pane/issues/50 and https://github.com/DimitryDushkin/sliding-pane/issues/45
+- Up deps
+
 ### 6.1.1
 
 - Correct types for some props
