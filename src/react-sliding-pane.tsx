@@ -44,19 +44,24 @@ export function ReactSlidingPane({
   const state = React.useState(false);
   const wasOpen = state[0];
   const setWasOpen = state[1];
-
   const handleAfterOpen = React.useCallback(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setWasOpen(true);
       onAfterOpen?.();
     }, 0);
+    return () => {
+      clearTimeout(timer)
+    }
   }, [onAfterOpen]);
 
   const handleAfterClose = React.useCallback(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setWasOpen(false);
       onAfterClose?.();
     }, 0);
+    return () => {
+      clearTimeout(timer)
+    }
   }, [onAfterClose]);
 
   return (
