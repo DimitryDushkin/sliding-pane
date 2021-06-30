@@ -42,27 +42,33 @@ export function ReactSlidingPane({
 
   // Reduce bundle size by removing polyfill if array destruction
   const state = React.useState(false);
+
+  // hold a "mounted" state to handle timeout / async code execution
+  const mounted = React.useRef(false);
+  React.useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false };
+  }, [])
+
   const wasOpen = state[0];
   const setWasOpen = state[1];
   const handleAfterOpen = React.useCallback(() => {
-    const timer = setTimeout(() => {
-      setWasOpen(true);
-      onAfterOpen?.();
-    }, 0);
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [onAfterOpen]);
+    setTimeout(() => {
+        if (mounted.current) {
+          setWasOpen(true);
+          onAfterOpen?.();
+        }
+      }, 0);
+  }, [onAfterOpen, setWasOpen]);
 
   const handleAfterClose = React.useCallback(() => {
-    const timer = setTimeout(() => {
-      setWasOpen(false);
-      onAfterClose?.();
-    }, 0);
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [onAfterClose]);
+    setTimeout(() => {
+        if (mounted.current) {
+          setWasOpen(false);
+          onAfterClose?.();
+        }
+      }, 0);
+  }, [onAfterClose, setWasOpen]);
 
   return (
     <Modal
