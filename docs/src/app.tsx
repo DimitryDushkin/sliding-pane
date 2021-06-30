@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-// import SlidingPane from 'react-sliding-pane';
+// import { ReactSlidingPane } from 'react-sliding-pane';
 // import 'react-sliding-pane/dist/react-sliding-pane.css';
-import SlidingPane from "../../dist/react-sliding-pane.js";
-import "../../dist/react-sliding-pane.css";
+import ReactSlidingPane from "../../src/react-sliding-pane";
+import "../../src/react-sliding-pane.css";
 
-class App extends Component {
-  constructor(props) {
+type State = {
+  isPaneOpen: boolean;
+  isPaneOpenLeft: boolean;
+  isPaneOpenBottom: boolean;
+};
+
+class App extends Component<{}, State> {
+  el?: HTMLDivElement | null;
+
+  constructor(props: {}) {
     super(props);
     this.state = {
       isPaneOpen: false,
@@ -19,17 +27,17 @@ class App extends Component {
     return (
       <div ref={(ref) => (this.el = ref)}>
         <button onClick={() => this.setState({ isPaneOpen: true })}>
-          Click me to open right pane!
+          Open right pane
         </button>
         <div style={{ marginTop: "32px" }}>
           <button onClick={() => this.setState({ isPaneOpenLeft: true })}>
-            Click me to open left pane with 20% width!
+            Open left pane with 20% width and hidden header
           </button>
           <button onClick={() => this.setState({ isPaneOpenBottom: true })}>
-            Click me to open bottom pane
+            Open bottom pane
           </button>
         </div>
-        <SlidingPane
+        <ReactSlidingPane
           className="some-custom-class"
           overlayClassName="some-custom-overlay-class"
           isOpen={this.state.isPaneOpen}
@@ -41,17 +49,18 @@ class App extends Component {
           }}
         >
           <Content />
-        </SlidingPane>
-        <SlidingPane
+        </ReactSlidingPane>
+        <ReactSlidingPane
           isOpen={this.state.isPaneOpenLeft}
           title="Hey, it is optional pane title.  I can be React component too."
           from="left"
           width="200px"
           onRequestClose={() => this.setState({ isPaneOpenLeft: false })}
+          hideHeader={true}
         >
           <div style={{ height: "110vh" }}>And I am pane content on left.</div>
-        </SlidingPane>
-        <SlidingPane
+        </ReactSlidingPane>
+        <ReactSlidingPane
           isOpen={this.state.isPaneOpenBottom}
           title="Hey, it is optional pane title.  I can be React component too."
           from="bottom"
@@ -59,15 +68,15 @@ class App extends Component {
           onRequestClose={() => this.setState({ isPaneOpenBottom: false })}
         >
           <div>And I am pane content on the bottom.</div>
-        </SlidingPane>
+        </ReactSlidingPane>
       </div>
     );
   }
 }
 
 class Content extends Component {
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
     // eslint-disable-next-line
     console.log("contructor");
   }

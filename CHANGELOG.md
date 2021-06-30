@@ -1,3 +1,25 @@
+### 7.0
+- Fixes https://github.com/DimitryDushkin/sliding-pane/issues/50 and https://github.com/DimitryDushkin/sliding-pane/issues/45
+- Up deps
+
+### 6.1.1
+
+- Correct types for some props
+
+### 6.0.0
+
+- Rewrite to Typescript
+- Provide d.ts
+
+### 5.1.0
+
+- Add hideHeader option (thx [Banuni](https://github.com/banuni)) https://github.com/DimitryDushkin/sliding-pane/pull/43
+
+### 5.0.0
+
+- Switch dist output to CommonJS module
+- Update docs
+
 ### 4.1.0
 
 - Update deps
