@@ -11,7 +11,7 @@
     "docs": "rollup -c rollup-docs.config.js",
     "lint": "eslint ./src/*.tsx",
     "test": "jest",
-    "prepublishOnly": "echo \"BUILD BEFORE PUBLISH\" && yarn run build && yarn run lint && tsc"
+    "prepublishOnly": "echo \"BUILD BEFORE PUBLISH\" && yarn run build && yarn run lint && yarn test && tsc"
   },
   "registry": "https://registry.npmjs.org/",
   "repository": {
