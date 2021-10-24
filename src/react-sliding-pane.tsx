@@ -9,7 +9,7 @@ import './react-sliding-pane.css';
 const CLOSE_TIMEOUT = 500;
 
 type Props = {
-  isOpen: boolean;
+  isOpen?: boolean;
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
   from?: 'left' | 'right' | 'bottom'; // "right" — default
@@ -79,7 +79,7 @@ export function ReactSlidingPane({
         content: { width: width || '80%' },
       }}
       closeTimeoutMS={CLOSE_TIMEOUT}
-      isOpen={isOpen}
+      isOpen={isOpen ?? false}
       shouldCloseOnEsc={shouldCloseOnEsc}
       onAfterOpen={handleAfterOpen}
       onAfterClose={handleAfterClose}

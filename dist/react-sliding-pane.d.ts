@@ -1,7 +1,7 @@
 import React from 'react';
 import './react-sliding-pane.css';
 declare type Props = {
-    isOpen: boolean;
+    isOpen?: boolean;
     title?: React.ReactNode;
     subtitle?: React.ReactNode;
     from?: 'left' | 'right' | 'bottom';
