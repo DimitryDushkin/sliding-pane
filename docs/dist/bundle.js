@@ -23,21 +23,6 @@
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-      });
-    } else {
-      obj[key] = value;
-    }
-
-    return obj;
-  }
-
   function _inherits$1(subClass, superClass) {
     if (typeof superClass !== "function" && superClass !== null) {
       throw new TypeError("Super expression must either be null or a function");
@@ -117,6 +102,65 @@
 
       return _possibleConstructorReturn$1(this, result);
     };
+  }
+
+  function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+  }
+
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+
+  function _iterableToArrayLimit(arr, i) {
+    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+    if (_i == null) return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+
+    var _s, _e;
+
+    try {
+      for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
+  }
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
   function getDefaultExportFromCjs (x) {
@@ -2405,12 +2449,12 @@
         overlayClassName = _ref.overlayClassName,
         closeIcon = _ref.closeIcon,
         _ref$from = _ref.from,
-        from = _ref$from === void 0 ? "right" : _ref$from,
+        from = _ref$from === void 0 ? 'right' : _ref$from,
         width = _ref.width,
         shouldCloseOnEsc = _ref.shouldCloseOnEsc,
         _ref$hideHeader = _ref.hideHeader,
         hideHeader = _ref$hideHeader === void 0 ? false : _ref$hideHeader;
-    var directionClass = "slide-pane_from_".concat(from); // Reduce bundle size by removing polyfill if array destruction
+    var directionClass = "slide-pane_from_".concat(from); // Not usign array destruction to reduce bundle size by removing polyfill
 
     var state = React.useState(false);
     var wasOpen = state[0];
@@ -2430,18 +2474,18 @@
     return /*#__PURE__*/React.createElement(Modal, {
       ariaHideApp: false,
       overlayClassName: {
-        base: "slide-pane__overlay ".concat(overlayClassName || ""),
-        afterOpen: wasOpen ? "overlay-after-open" : '',
-        beforeClose: "overlay-before-close"
+        base: "slide-pane__overlay ".concat(overlayClassName || ''),
+        afterOpen: wasOpen ? 'overlay-after-open' : '',
+        beforeClose: 'overlay-before-close'
       },
       className: {
-        base: "slide-pane ".concat(directionClass, " ").concat(className || ""),
-        afterOpen: wasOpen ? "content-after-open" : '',
-        beforeClose: "content-before-close"
+        base: "slide-pane ".concat(directionClass, " ").concat(className || ''),
+        afterOpen: wasOpen ? 'content-after-open' : '',
+        beforeClose: 'content-before-close'
       },
       style: {
         content: {
-          width: width || "80%"
+          width: width || '80%'
         }
       },
       closeTimeoutMS: CLOSE_TIMEOUT,
@@ -2450,12 +2494,14 @@
       onAfterOpen: handleAfterOpen,
       onAfterClose: handleAfterClose,
       onRequestClose: onRequestClose,
-      contentLabel: "Modal \"".concat(title || "", "\"")
+      contentLabel: "Modal \"".concat(title || '', "\"")
     }, !hideHeader && /*#__PURE__*/React.createElement("div", {
       className: "slide-pane__header"
     }, /*#__PURE__*/React.createElement("div", {
       className: "slide-pane__close",
-      onClick: onRequestClose
+      onClick: onRequestClose,
+      role: "button",
+      tabIndex: 0
     }, closeIcon || /*#__PURE__*/React.createElement(IconClose, null)), /*#__PURE__*/React.createElement("div", {
       className: "slide-pane__title-wrapper"
     }, /*#__PURE__*/React.createElement("h2", {
@@ -2470,7 +2516,7 @@
     isOpen: _pt.bool.isRequired,
     title: _pt.node,
     subtitle: _pt.node,
-    from: _pt.oneOf(["left", "right", "bottom"]),
+    from: _pt.oneOf(['left', 'right', 'bottom']),
     children: _pt.node.isRequired,
     className: _pt.string,
     overlayClassName: _pt.string,
@@ -2494,117 +2540,80 @@
     }));
   }
 
-  var App = /*#__PURE__*/function (_Component) {
-    _inherits$1(App, _Component);
+  function App() {
+    var rootRef = react.exports.useRef();
 
-    var _super = _createSuper(App);
+    var _useState = react.exports.useState(null),
+        _useState2 = _slicedToArray(_useState, 2),
+        paneOpened = _useState2[0],
+        setOpenedPane = _useState2[1];
 
-    function App(props) {
-      var _this;
-
-      _classCallCheck$2(this, App);
-
-      _this = _super.call(this, props);
-
-      _defineProperty(_assertThisInitialized(_this), "el", void 0);
-
-      _this.state = {
-        isPaneOpen: false,
-        isPaneOpenLeft: false,
-        isPaneOpenBottom: false
-      };
-      return _this;
-    }
-
-    _createClass$1(App, [{
-      key: "render",
-      value: function render() {
-        var _this2 = this;
-
-        return /*#__PURE__*/React.createElement("div", {
-          ref: function ref(_ref) {
-            return _this2.el = _ref;
-          }
-        }, /*#__PURE__*/React.createElement("button", {
-          onClick: function onClick() {
-            return _this2.setState({
-              isPaneOpen: true
-            });
-          }
-        }, "Open right pane"), /*#__PURE__*/React.createElement("div", {
-          style: {
-            marginTop: "32px"
-          }
-        }, /*#__PURE__*/React.createElement("button", {
-          onClick: function onClick() {
-            return _this2.setState({
-              isPaneOpenLeft: true
-            });
-          }
-        }, "Open left pane with 20% width and hidden header"), /*#__PURE__*/React.createElement("button", {
-          onClick: function onClick() {
-            return _this2.setState({
-              isPaneOpenBottom: true
-            });
-          }
-        }, "Open bottom pane")), /*#__PURE__*/React.createElement(ReactSlidingPane, {
-          className: "some-custom-class",
-          overlayClassName: "some-custom-overlay-class",
-          isOpen: this.state.isPaneOpen,
-          title: "Hey, it is optional pane title.  I can be React component too.",
-          subtitle: "Optional subtitle.",
-          onRequestClose: function onRequestClose() {
-            // triggered on "<" on left top click or on outside click
-            _this2.setState({
-              isPaneOpen: false
-            });
-          }
-        }, /*#__PURE__*/React.createElement(Content, null)), /*#__PURE__*/React.createElement(ReactSlidingPane, {
-          isOpen: this.state.isPaneOpenLeft,
-          title: "Hey, it is optional pane title.  I can be React component too.",
-          from: "left",
-          width: "200px",
-          onRequestClose: function onRequestClose() {
-            return _this2.setState({
-              isPaneOpenLeft: false
-            });
-          },
-          hideHeader: true
-        }, /*#__PURE__*/React.createElement("div", {
-          style: {
-            height: "110vh"
-          }
-        }, "And I am pane content on left.")), /*#__PURE__*/React.createElement(ReactSlidingPane, {
-          isOpen: this.state.isPaneOpenBottom,
-          title: "Hey, it is optional pane title.  I can be React component too.",
-          from: "bottom",
-          width: "100%",
-          onRequestClose: function onRequestClose() {
-            return _this2.setState({
-              isPaneOpenBottom: false
-            });
-          }
-        }, /*#__PURE__*/React.createElement("div", null, "And I am pane content on the bottom.")));
+    return /*#__PURE__*/React.createElement("div", {
+      ref: rootRef
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setOpenedPane('right');
       }
-    }]);
+    }, "Open right pane"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: '32px'
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setOpenedPane('left');
+      }
+    }, "Open left pane with 20% width and hidden header"), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setOpenedPane('bottom');
+      }
+    }, "Open bottom pane")), /*#__PURE__*/React.createElement(ReactSlidingPane, {
+      className: "some-custom-class",
+      overlayClassName: "some-custom-overlay-class",
+      isOpen: paneOpened === 'right',
+      title: "Hey, it is optional pane title.  I can be React component too.",
+      subtitle: "Optional subtitle.",
+      onRequestClose: function onRequestClose() {
+        // triggered on "<" on left top click or on outside click
+        setOpenedPane(null);
+      }
+    }, /*#__PURE__*/React.createElement(Content, null)), /*#__PURE__*/React.createElement(ReactSlidingPane, {
+      isOpen: paneOpened === 'left',
+      title: "Hey, it is optional pane title.  I can be React component too.",
+      from: "left",
+      width: "200px",
+      onRequestClose: function onRequestClose() {
+        return setOpenedPane(null);
+      },
+      hideHeader: true
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: '110vh'
+      }
+    }, "And I am pane content on left.")), /*#__PURE__*/React.createElement(ReactSlidingPane, {
+      isOpen: paneOpened === 'bottom',
+      title: "Hey, it is optional pane title.  I can be React component too.",
+      from: "bottom",
+      width: "100%",
+      onRequestClose: function onRequestClose() {
+        return setOpenedPane(null);
+      }
+    }, /*#__PURE__*/React.createElement("div", null, "And I am pane content on the bottom.")));
+  }
 
-    return App;
-  }(react.exports.Component);
+  var Content = /*#__PURE__*/function (_Component) {
+    _inherits$1(Content, _Component);
 
-  var Content = /*#__PURE__*/function (_Component2) {
-    _inherits$1(Content, _Component2);
-
-    var _super2 = _createSuper(Content);
+    var _super = _createSuper(Content);
 
     function Content(props) {
-      var _this3;
+      var _this;
 
       _classCallCheck$2(this, Content);
 
-      _this3 = _super2.call(this, props); // eslint-disable-next-line
+      _this = _super.call(this, props); // eslint-disable-next-line
 
       console.log("contructor");
-      return _this3;
+      return _this;
     }
 
     _createClass$1(Content, [{
@@ -2625,7 +2634,7 @@
     return Content;
   }(react.exports.Component);
 
-  reactDom.exports.render( /*#__PURE__*/React.createElement(App, null), document.getElementById("app"));
+  reactDom.exports.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('app'));
 
 })();
 //# sourceMappingURL=bundle.js.map
