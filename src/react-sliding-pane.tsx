@@ -49,6 +49,7 @@ export function ReactSlidingPane({
   const setWasOpen = state[1];
 
   const handleAfterOpen = React.useCallback(() => {
+    // Timeout fixes animation in Safari
     setTimeout(() => {
       setWasOpen(true);
       onAfterOpen?.();
