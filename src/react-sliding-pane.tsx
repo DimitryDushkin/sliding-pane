@@ -1,7 +1,10 @@
-import React from "react";
-import Modal from "react-modal";
+/* eslint-disable react/require-default-props */
+/* eslint-disable no-use-before-define */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React from 'react';
+import Modal from 'react-modal';
 
-import "./react-sliding-pane.css";
+import './react-sliding-pane.css';
 
 const CLOSE_TIMEOUT = 500;
 
@@ -9,7 +12,7 @@ type Props = {
   isOpen: boolean;
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
-  from?: "left" | "right" | "bottom"; // "right" — default
+  from?: 'left' | 'right' | 'bottom'; // "right" — default
   children: React.ReactNode;
   className?: string;
   overlayClassName?: string;
@@ -33,14 +36,14 @@ export function ReactSlidingPane({
   className,
   overlayClassName,
   closeIcon,
-  from = "right",
+  from = 'right',
   width,
   shouldCloseOnEsc,
   hideHeader = false,
 }: Props) {
   const directionClass = `slide-pane_from_${from}`;
 
-  // Reduce bundle size by removing polyfill if array destruction
+  // Not usign array destruction to reduce bundle size by removing polyfill
   const state = React.useState(false);
   const wasOpen = state[0];
   const setWasOpen = state[1];
@@ -63,17 +66,17 @@ export function ReactSlidingPane({
     <Modal
       ariaHideApp={false}
       overlayClassName={{
-        base: `slide-pane__overlay ${overlayClassName || ""}`,
-        afterOpen: wasOpen ? "overlay-after-open" : '',
-        beforeClose: "overlay-before-close"
+        base: `slide-pane__overlay ${overlayClassName || ''}`,
+        afterOpen: wasOpen ? 'overlay-after-open' : '',
+        beforeClose: 'overlay-before-close',
       }}
       className={{
-        base: `slide-pane ${directionClass} ${className || ""}`,
-        afterOpen: wasOpen ? "content-after-open" : '',
-        beforeClose: "content-before-close"
+        base: `slide-pane ${directionClass} ${className || ''}`,
+        afterOpen: wasOpen ? 'content-after-open' : '',
+        beforeClose: 'content-before-close',
       }}
       style={{
-        content: { width: width || "80%" },
+        content: { width: width || '80%' },
       }}
       closeTimeoutMS={CLOSE_TIMEOUT}
       isOpen={isOpen}
@@ -81,11 +84,11 @@ export function ReactSlidingPane({
       onAfterOpen={handleAfterOpen}
       onAfterClose={handleAfterClose}
       onRequestClose={onRequestClose}
-      contentLabel={`Modal "${title || ""}"`}
+      contentLabel={`Modal "${title || ''}"`}
     >
       {!hideHeader && (
         <div className="slide-pane__header">
-          <div className="slide-pane__close" onClick={onRequestClose}>
+          <div className="slide-pane__close" onClick={onRequestClose} role="button" tabIndex={0}>
             {closeIcon || <IconClose />}
           </div>
           <div className="slide-pane__title-wrapper">
