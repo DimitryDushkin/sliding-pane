@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable jest/prefer-expect-assertions */
 import {
   fireEvent,
@@ -13,6 +14,7 @@ import "@testing-library/jest-dom";
 const RIGHT_PANE_CONTENT = "right-pane-content";
 const LEFT_PANE_CONTENT = "left-pane-content";
 const RIGHT_PANE_OVERLAY = "some-custom-overlay-class";
+const CLOSE_TIMEOUT = 500;
 
 const App = ({
   onAfterOpen,
@@ -45,7 +47,7 @@ const App = ({
       </button>
       <ReactSlidingPane
         className="some-custom-class"
-        overlayClassName="some-custom-overlay-class"
+        overlayClassName={RIGHT_PANE_OVERLAY}
         isOpen={state.isRightPaneOpen}
         title="Hey, it is optional pane title.  I can be React component too."
         subtitle="Optional subtitle."
@@ -73,6 +75,10 @@ const App = ({
   );
 };
 
+async function wait(time: number) {
+  return new Promise((r) => setTimeout(r, time));
+}
+
 describe("render", () => {
   it("do not render on closed state", () => {
     render(<App />);
@@ -96,7 +102,10 @@ describe("render", () => {
   });
 
   it("do not render content upon toggle state", async () => {
-    render(<App />);
+    const onAfterOpen = jest.fn();
+    const onAfterClose = jest.fn();
+
+    render(<App onAfterOpen={onAfterOpen} onAfterClose={onAfterClose} />);
 
     fireEvent.click(screen.getByTestId("open-right-pane"));
 
@@ -104,9 +113,16 @@ describe("render", () => {
       screen.getByTestId(RIGHT_PANE_CONTENT)
     );
 
+    await wait(100);
+    expect(onAfterOpen).toHaveBeenCalledTimes(1);
+
     fireEvent.click(document.querySelector(`.${RIGHT_PANE_OVERLAY}`));
 
     await waitForElementToBeRemoved(contentEl);
+
+    await wait(CLOSE_TIMEOUT);
+    expect(onAfterOpen).toHaveBeenCalledTimes(1);
+    expect(onAfterClose).toHaveBeenCalledTimes(1);
 
     expect(screen.queryByTestId(RIGHT_PANE_CONTENT)).toBeNull();
   });
