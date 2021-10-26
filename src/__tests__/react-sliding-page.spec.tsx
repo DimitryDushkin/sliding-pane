@@ -1,6 +1,7 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable jest/prefer-expect-assertions */
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -102,6 +103,7 @@ describe("render", () => {
   });
 
   it("do not render content upon toggle state", async () => {
+    jest.useFakeTimers();
     const onAfterOpen = jest.fn();
     const onAfterClose = jest.fn();
 
@@ -113,17 +115,23 @@ describe("render", () => {
       screen.getByTestId(RIGHT_PANE_CONTENT)
     );
 
-    await wait(100);
+    act(() => {
+      jest.runAllTimers();
+    });
     expect(onAfterOpen).toHaveBeenCalledTimes(1);
 
     fireEvent.click(document.querySelector(`.${RIGHT_PANE_OVERLAY}`));
 
     await waitForElementToBeRemoved(contentEl);
 
-    await wait(CLOSE_TIMEOUT);
+    act(() => {
+      jest.runAllTimers();
+    });
     expect(onAfterOpen).toHaveBeenCalledTimes(1);
     expect(onAfterClose).toHaveBeenCalledTimes(1);
 
     expect(screen.queryByTestId(RIGHT_PANE_CONTENT)).toBeNull();
+
+    jest.useRealTimers();
   });
 });
