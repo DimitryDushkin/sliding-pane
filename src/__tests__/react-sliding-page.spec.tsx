@@ -1,11 +1,18 @@
 /* eslint-disable jest/prefer-expect-assertions */
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import React, { useState } from "react";
 import { ReactSlidingPane } from "../react-sliding-pane";
 import "@testing-library/jest-dom";
 
 const RIGHT_PANE_CONTENT = "right-pane-content";
 const LEFT_PANE_CONTENT = "left-pane-content";
+const RIGHT_PANE_OVERLAY = "some-custom-overlay-class";
 
 const App = ({
   onAfterOpen,
@@ -88,13 +95,19 @@ describe("render", () => {
     expect(screen.queryByTestId(LEFT_PANE_CONTENT)).toBeNull();
   });
 
-  it("do not render content upon toggle state", () => {
+  it("do not render content upon toggle state", async () => {
     render(<App />);
 
     fireEvent.click(screen.getByTestId("open-right-pane"));
 
-    await waitFor(() => screen.getByTestId(RIGHT_PANE_CONTENT));
+    const contentEl = await waitFor(() =>
+      screen.getByTestId(RIGHT_PANE_CONTENT)
+    );
 
-    fireEvent.click(screen.getByTestId("open-right-pane"));
+    fireEvent.click(document.querySelector(`.${RIGHT_PANE_OVERLAY}`));
+
+    await waitForElementToBeRemoved(contentEl);
+
+    expect(screen.queryByTestId(RIGHT_PANE_CONTENT)).toBeNull();
   });
 });
