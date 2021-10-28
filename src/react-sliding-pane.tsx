@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable no-use-before-define */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
 
 import "./react-sliding-pane.css";
@@ -25,6 +25,29 @@ type Props = {
   onAfterClose?: () => void;
 };
 
+function useUpdateStateIfMounted<T>(initialValue: T) {
+  const isMountedRef = useRef(true);
+
+  useEffect(
+    () => () => {
+      isMountedRef.current = false;
+    },
+    []
+  );
+
+  const useStateResult = useState(initialValue);
+  const state = useStateResult[0];
+  const setState = useStateResult[1];
+
+  const setStateIfMounted = (value: T) => {
+    if (isMountedRef.current === true) {
+      setState(value);
+    }
+  };
+
+  return [state, setStateIfMounted] as const;
+}
+
 export function ReactSlidingPane({
   isOpen,
   title,
@@ -43,25 +66,25 @@ export function ReactSlidingPane({
 }: Props) {
   const directionClass = `slide-pane_from_${from}`;
 
-  // Not usign array destruction to reduce bundle size by removing polyfill
-  const state = React.useState(false);
+  // Not usign array destruction to reduce bundle size by not introducing polyfill
+  const state = useUpdateStateIfMounted(false);
   const wasOpen = state[0];
   const setWasOpen = state[1];
 
-  const handleAfterOpen = React.useCallback(() => {
+  const handleAfterOpen = () => {
     // Timeout fixes animation in Safari
+    onAfterOpen?.();
     setTimeout(() => {
       setWasOpen(true);
-      onAfterOpen?.();
     }, 0);
-  }, [onAfterOpen]);
+  };
 
-  const handleAfterClose = React.useCallback(() => {
+  const handleAfterClose = () => {
+    onAfterClose?.();
     setTimeout(() => {
       setWasOpen(false);
-      onAfterClose?.();
     }, 0);
-  }, [onAfterClose]);
+  };
 
   return (
     <Modal
