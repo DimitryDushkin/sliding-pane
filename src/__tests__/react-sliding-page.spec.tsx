@@ -15,7 +15,6 @@ import "@testing-library/jest-dom";
 const RIGHT_PANE_CONTENT = "right-pane-content";
 const LEFT_PANE_CONTENT = "left-pane-content";
 const RIGHT_PANE_OVERLAY = "some-custom-overlay-class";
-const CLOSE_TIMEOUT = 500;
 
 const App = ({
   onAfterOpen,
@@ -31,9 +30,16 @@ const App = ({
     isRightPaneOpen: false,
     isLeftPaneOpen: false,
   });
+  const [isComponentUnmounted, unmountComponent] = useState(false);
 
   return (
     <div>
+      <button
+        onClick={() => unmountComponent(true)}
+        data-testid="unmount-right-pane"
+      >
+        unmount
+      </button>
       <button
         onClick={() => setState({ isRightPaneOpen: true })}
         data-testid="open-right-pane"
@@ -46,20 +52,23 @@ const App = ({
       >
         Click me to open left pane with 20% width!
       </button>
-      <ReactSlidingPane
-        className="some-custom-class"
-        overlayClassName={RIGHT_PANE_OVERLAY}
-        isOpen={state.isRightPaneOpen}
-        title="Hey, it is optional pane title.  I can be React component too."
-        subtitle="Optional subtitle."
-        onRequestClose={() => setState({ isRightPaneOpen: false })}
-        onAfterOpen={onAfterOpen}
-        onAfterClose={onAfterClose}
-      >
-        <div data-testid={RIGHT_PANE_CONTENT}>
-          And I am pane content. BTW, what rocks?
-        </div>
-      </ReactSlidingPane>
+      {!isComponentUnmounted && (
+        <ReactSlidingPane
+          className="some-custom-class"
+          overlayClassName={RIGHT_PANE_OVERLAY}
+          isOpen={state.isRightPaneOpen}
+          title="Hey, it is optional pane title.  I can be React component too."
+          subtitle="Optional subtitle."
+          onRequestClose={() => setState({ isRightPaneOpen: false })}
+          onAfterOpen={onAfterOpen}
+          onAfterClose={onAfterClose}
+        >
+          <div data-testid={RIGHT_PANE_CONTENT}>
+            And I am pane content. BTW, what rocks?
+          </div>
+        </ReactSlidingPane>
+      )}
+
       <ReactSlidingPane
         closeIcon={<div>Some div containing custom close icon.</div>}
         isOpen={state.isLeftPaneOpen}
@@ -75,10 +84,6 @@ const App = ({
     </div>
   );
 };
-
-async function wait(time: number) {
-  return new Promise((r) => setTimeout(r, time));
-}
 
 describe("render", () => {
   it("do not render on closed state", () => {
@@ -133,5 +138,30 @@ describe("render", () => {
     expect(screen.queryByTestId(RIGHT_PANE_CONTENT)).toBeNull();
 
     jest.useRealTimers();
+  });
+
+  it("tests absence of state update of unmounted component", async () => {
+    const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
+
+    jest.useFakeTimers();
+
+    const handleAfterOpen = () => {
+      fireEvent.click(screen.getByTestId("unmount-right-pane"));
+    };
+
+    render(<App onAfterOpen={handleAfterOpen} />);
+
+    fireEvent.click(screen.getByTestId("open-right-pane"));
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(screen.queryByTestId(RIGHT_PANE_CONTENT)).toBeNull();
+    expect(consoleErrorSpy).not.toHaveBeenCalled(); // expect no "Warning: Can't perform a React state update on an unmounted component."
+
+    jest.useRealTimers();
+
+    consoleErrorSpy.mockRestore();
   });
 });

@@ -387,7 +387,7 @@
 
   var checkPropTypes_1 = checkPropTypes$1;
 
-  /** @license React v16.13.1
+  /** @license React v16.14.0
    * react.development.js
    *
    * Copyright (c) Facebook, Inc. and its affiliates.
@@ -404,7 +404,7 @@
   var _assign = objectAssign;
   var checkPropTypes = checkPropTypes_1;
 
-  var ReactVersion = '16.13.1';
+  var ReactVersion = '16.14.0';
 
   // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
   // nor polyfill, then a plain number is used for performance.
@@ -3529,7 +3529,7 @@
     tracing.exports = schedulerTracing_development;
   }
 
-  /** @license React v16.13.1
+  /** @license React v16.14.0
    * react-dom.development.js
    *
    * Copyright (c) Facebook, Inc. and its affiliates.
@@ -28088,7 +28088,7 @@
       // Enables DevTools to append owner stacks to error messages in DEV mode.
       getCurrentFiber:  function () {
         return current;
-      } 
+      }
     }));
   }
   ReactSharedInternals.IsSomeRendererActing;
@@ -28436,7 +28436,7 @@
     };
   }
 
-  var ReactVersion = '16.13.1';
+  var ReactVersion = '16.14.0';
 
   setAttemptUserBlockingHydration(attemptUserBlockingHydration$1);
   setAttemptContinuousHydration(attemptContinuousHydration$1);
@@ -31111,10 +31111,31 @@
     }
   }
 
-  var css_248z = ".slide-pane {\n  display: flex;\n  flex-direction: column;\n  background: #fff;\n  min-width: 100px;\n  height: 100%;\n  box-shadow: 0 8px 8px rgba(0,0,0,0.5);\n  transition: transform 0.5s;\n  will-change: transform;\n}\n.slide-pane:focus {\n  outline-style: none;\n}\n.slide-pane_from_right {\n  margin-left: auto;\n  transform: translateX(100%);\n}\n.slide-pane_from_right.content-after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_right.content-before-close {\n  transform: translateX(100%);\n}\n.slide-pane_from_left {\n  margin-right: auto;\n  transform: translateX(-100%);\n}\n.slide-pane_from_left.content-after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_left.content-before-close {\n  transform: translateX(-100%);\n}\n.slide-pane_from_bottom {\n  height: 90vh;\n  margin-top: 10vh;\n  transform: translateY(100%);\n}\n.slide-pane_from_bottom.content-after-open {\n  transform: translateY(0%);\n}\n.slide-pane_from_bottom.content-before-close {\n  transform: translateY(100%);\n}\n.slide-pane__overlay {\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  right: 0px;\n  bottom: 0px;\n  background-color: rgba(0,0,0,0);\n}\n.slide-pane__overlay.overlay-after-open {\n  background-color: rgba(0,0,0,0.3);\n  transition: background-color 0.5s;\n}\n.slide-pane__overlay.overlay-before-close {\n  background-color: rgba(0,0,0,0);\n}\n.slide-pane__header {\n  display: flex;\n  flex: 0 0 64px;\n  align-items: center;\n  background: #ebebeb;\n  height: 64px;\n  border-bottom: 1px solid rgba(0,0,0,0.1);\n}\n.slide-pane__title-wrapper {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  margin-left: 32px;\n  min-width: 0;\n}\n.slide-pane .slide-pane__title {\n  font-size: 18px;\n  font-weight: normal;\n  max-width: 80%;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin: 0;\n  padding: 0;\n}\n.slide-pane__close {\n  margin-left: 24px;\n  padding: 16px;\n  opacity: 0.7;\n  cursor: pointer;\n}\n.slide-pane__close svg {\n  width: 12px;\n  padding: 0;\n}\n.slide-pane__content {\n  position: relative;\n  overflow-y: auto;\n  padding: 24px 32px;\n  flex: 1 1 auto;\n}\n.slide-pane__subtitle {\n  font-size: 12px;\n  margin-top: 2px;\n}\n";
+  var css_248z = ".slide-pane {\n  display: flex;\n  flex-direction: column;\n  background: #fff;\n  min-width: 100px;\n  height: 100%;\n  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);\n  transition: transform 0.5s;\n  will-change: transform;\n}\n.slide-pane:focus {\n  outline-style: none;\n}\n.slide-pane_from_right {\n  margin-left: auto;\n  transform: translateX(100%);\n}\n.slide-pane_from_right.content-after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_right.content-before-close {\n  transform: translateX(100%);\n}\n.slide-pane_from_left {\n  margin-right: auto;\n  transform: translateX(-100%);\n}\n.slide-pane_from_left.content-after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_left.content-before-close {\n  transform: translateX(-100%);\n}\n.slide-pane_from_bottom {\n  height: 90vh;\n  margin-top: 10vh;\n  transform: translateY(100%);\n}\n.slide-pane_from_bottom.content-after-open {\n  transform: translateY(0%);\n}\n.slide-pane_from_bottom.content-before-close {\n  transform: translateY(100%);\n}\n.slide-pane__overlay {\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  right: 0px;\n  bottom: 0px;\n  background-color: rgba(0, 0, 0, 0);\n}\n.slide-pane__overlay.overlay-after-open {\n  background-color: rgba(0, 0, 0, 0.3);\n  transition: background-color 0.5s;\n}\n.slide-pane__overlay.overlay-before-close {\n  background-color: rgba(0, 0, 0, 0);\n}\n.slide-pane__header {\n  display: flex;\n  flex: 0 0 64px;\n  align-items: center;\n  background: #ebebeb;\n  height: 64px;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n}\n.slide-pane__title-wrapper {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  margin-left: 32px;\n  min-width: 0;\n}\n.slide-pane .slide-pane__title {\n  font-size: 18px;\n  font-weight: normal;\n  max-width: 80%;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin: 0;\n  padding: 0;\n}\n.slide-pane__close {\n  margin-left: 24px;\n  padding: 16px;\n  opacity: 0.7;\n  cursor: pointer;\n}\n.slide-pane__close svg {\n  width: 12px;\n  padding: 0;\n}\n.slide-pane__content {\n  position: relative;\n  overflow-y: auto;\n  padding: 24px 32px;\n  flex: 1 1 auto;\n}\n.slide-pane__subtitle {\n  font-size: 12px;\n  margin-top: 2px;\n}\n";
   styleInject(css_248z);
 
   var CLOSE_TIMEOUT = 500;
+
+  function useUpdateStateIfMounted(initialValue) {
+    var isMountedRef = react.exports.useRef(true);
+    react.exports.useEffect(function () {
+      return function () {
+        isMountedRef.current = false;
+      };
+    }, []);
+    var useStateResult = react.exports.useState(initialValue);
+    var state = useStateResult[0];
+    var setState = useStateResult[1];
+
+    var setStateIfMounted = function setStateIfMounted(value) {
+      if (isMountedRef.current === true) {
+        setState(value);
+      }
+    };
+
+    return [state, setStateIfMounted];
+  }
+
   function ReactSlidingPane(_ref) {
     var isOpen = _ref.isOpen,
         title = _ref.title,
@@ -31127,43 +31148,47 @@
         overlayClassName = _ref.overlayClassName,
         closeIcon = _ref.closeIcon,
         _ref$from = _ref.from,
-        from = _ref$from === void 0 ? 'right' : _ref$from,
+        from = _ref$from === void 0 ? "right" : _ref$from,
         width = _ref.width,
         shouldCloseOnEsc = _ref.shouldCloseOnEsc,
         _ref$hideHeader = _ref.hideHeader,
         hideHeader = _ref$hideHeader === void 0 ? false : _ref$hideHeader;
-    var directionClass = "slide-pane_from_".concat(from); // Not usign array destruction to reduce bundle size by removing polyfill
+    var directionClass = "slide-pane_from_".concat(from); // Not usign array destruction to reduce bundle size by not introducing polyfill
 
-    var state = React.useState(false);
+    var state = useUpdateStateIfMounted(false);
     var wasOpen = state[0];
     var setWasOpen = state[1];
-    var handleAfterOpen = React.useCallback(function () {
+
+    var handleAfterOpen = function handleAfterOpen() {
+      // Timeout fixes animation in Safari
+      onAfterOpen === null || onAfterOpen === void 0 ? void 0 : onAfterOpen();
       setTimeout(function () {
         setWasOpen(true);
-        onAfterOpen === null || onAfterOpen === void 0 ? void 0 : onAfterOpen();
       }, 0);
-    }, [onAfterOpen]);
-    var handleAfterClose = React.useCallback(function () {
+    };
+
+    var handleAfterClose = function handleAfterClose() {
+      onAfterClose === null || onAfterClose === void 0 ? void 0 : onAfterClose();
       setTimeout(function () {
         setWasOpen(false);
-        onAfterClose === null || onAfterClose === void 0 ? void 0 : onAfterClose();
       }, 0);
-    }, [onAfterClose]);
+    };
+
     return /*#__PURE__*/React.createElement(Modal, {
       ariaHideApp: false,
       overlayClassName: {
-        base: "slide-pane__overlay ".concat(overlayClassName || ''),
-        afterOpen: wasOpen ? 'overlay-after-open' : '',
-        beforeClose: 'overlay-before-close'
+        base: "slide-pane__overlay ".concat(overlayClassName || ""),
+        afterOpen: wasOpen ? "overlay-after-open" : "",
+        beforeClose: "overlay-before-close"
       },
       className: {
-        base: "slide-pane ".concat(directionClass, " ").concat(className || ''),
-        afterOpen: wasOpen ? 'content-after-open' : '',
-        beforeClose: 'content-before-close'
+        base: "slide-pane ".concat(directionClass, " ").concat(className || ""),
+        afterOpen: wasOpen ? "content-after-open" : "",
+        beforeClose: "content-before-close"
       },
       style: {
         content: {
-          width: width || '80%'
+          width: width || "80%"
         }
       },
       closeTimeoutMS: CLOSE_TIMEOUT,
@@ -31172,7 +31197,7 @@
       onAfterOpen: handleAfterOpen,
       onAfterClose: handleAfterClose,
       onRequestClose: onRequestClose,
-      contentLabel: "Modal \"".concat(title || '', "\"")
+      contentLabel: "Modal \"".concat(title || "", "\"")
     }, !hideHeader && /*#__PURE__*/React.createElement("div", {
       className: "slide-pane__header"
     }, /*#__PURE__*/React.createElement("div", {
@@ -31194,7 +31219,7 @@
     isOpen: _pt.bool,
     title: _pt.node,
     subtitle: _pt.node,
-    from: _pt.oneOf(['left', 'right', 'bottom']),
+    from: _pt.oneOf(["left", "right", "bottom"]),
     children: _pt.node.isRequired,
     className: _pt.string,
     overlayClassName: _pt.string,

@@ -13,6 +13,27 @@ var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 var Modal__default = /*#__PURE__*/_interopDefaultLegacy(Modal);
 
 var CLOSE_TIMEOUT = 500;
+
+function useUpdateStateIfMounted(initialValue) {
+  var isMountedRef = React.useRef(true);
+  React.useEffect(function () {
+    return function () {
+      isMountedRef.current = false;
+    };
+  });
+  var useStateResult = React.useState(initialValue);
+  var state = useStateResult[0];
+  var setState = useStateResult[1];
+
+  var setStateIfMounted = function setStateIfMounted(value) {
+    if (isMountedRef.current === true) {
+      setState(value);
+    }
+  };
+
+  return [state, setStateIfMounted];
+}
+
 function ReactSlidingPane(_ref) {
   var isOpen = _ref.isOpen,
       title = _ref.title,
@@ -25,44 +46,44 @@ function ReactSlidingPane(_ref) {
       overlayClassName = _ref.overlayClassName,
       closeIcon = _ref.closeIcon,
       _ref$from = _ref.from,
-      from = _ref$from === void 0 ? 'right' : _ref$from,
+      from = _ref$from === void 0 ? "right" : _ref$from,
       width = _ref.width,
       shouldCloseOnEsc = _ref.shouldCloseOnEsc,
       _ref$hideHeader = _ref.hideHeader,
       hideHeader = _ref$hideHeader === void 0 ? false : _ref$hideHeader;
-  var directionClass = "slide-pane_from_".concat(from); // Not usign array destruction to reduce bundle size by removing polyfill
+  var directionClass = "slide-pane_from_".concat(from); // Not usign array destruction to reduce bundle size by not introducing polyfill
 
-  var state = React__default["default"].useState(false);
+  var state = useUpdateStateIfMounted(false);
   var wasOpen = state[0];
   var setWasOpen = state[1];
-  var handleAfterOpen = React__default["default"].useCallback(function () {
+  var handleAfterOpen = React.useCallback(function () {
     // Timeout fixes animation in Safari
+    onAfterOpen === null || onAfterOpen === void 0 ? void 0 : onAfterOpen();
     setTimeout(function () {
       setWasOpen(true);
-      onAfterOpen === null || onAfterOpen === void 0 ? void 0 : onAfterOpen();
     }, 0);
   }, [onAfterOpen]);
-  var handleAfterClose = React__default["default"].useCallback(function () {
+  var handleAfterClose = React.useCallback(function () {
+    onAfterClose === null || onAfterClose === void 0 ? void 0 : onAfterClose();
     setTimeout(function () {
       setWasOpen(false);
-      onAfterClose === null || onAfterClose === void 0 ? void 0 : onAfterClose();
     }, 0);
   }, [onAfterClose]);
   return /*#__PURE__*/React__default["default"].createElement(Modal__default["default"], {
     ariaHideApp: false,
     overlayClassName: {
-      base: "slide-pane__overlay ".concat(overlayClassName || ''),
-      afterOpen: wasOpen ? 'overlay-after-open' : '',
-      beforeClose: 'overlay-before-close'
+      base: "slide-pane__overlay ".concat(overlayClassName || ""),
+      afterOpen: wasOpen ? "overlay-after-open" : "",
+      beforeClose: "overlay-before-close"
     },
     className: {
-      base: "slide-pane ".concat(directionClass, " ").concat(className || ''),
-      afterOpen: wasOpen ? 'content-after-open' : '',
-      beforeClose: 'content-before-close'
+      base: "slide-pane ".concat(directionClass, " ").concat(className || ""),
+      afterOpen: wasOpen ? "content-after-open" : "",
+      beforeClose: "content-before-close"
     },
     style: {
       content: {
-        width: width || '80%'
+        width: width || "80%"
       }
     },
     closeTimeoutMS: CLOSE_TIMEOUT,
@@ -71,7 +92,7 @@ function ReactSlidingPane(_ref) {
     onAfterOpen: handleAfterOpen,
     onAfterClose: handleAfterClose,
     onRequestClose: onRequestClose,
-    contentLabel: "Modal \"".concat(title || '', "\"")
+    contentLabel: "Modal \"".concat(title || "", "\"")
   }, !hideHeader && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "slide-pane__header"
   }, /*#__PURE__*/React__default["default"].createElement("div", {
@@ -93,7 +114,7 @@ ReactSlidingPane.propTypes = {
   isOpen: _pt__default["default"].bool,
   title: _pt__default["default"].node,
   subtitle: _pt__default["default"].node,
-  from: _pt__default["default"].oneOf(['left', 'right', 'bottom']),
+  from: _pt__default["default"].oneOf(["left", "right", "bottom"]),
   children: _pt__default["default"].node.isRequired,
   className: _pt__default["default"].string,
   overlayClassName: _pt__default["default"].string,
