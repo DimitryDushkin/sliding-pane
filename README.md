@@ -19,7 +19,7 @@ See [changelog](https://github.com/DimitryDushkin/sliding-pane/blob/master/CHANG
 
 [![npm version](https://badgen.net/npm/v/react-sliding-pane?color=green&label=npm%20package)](https://www.npmjs.com/package/react-sliding-pane)
 [![downloads per week](https://badgen.net/npm/dw/react-sliding-pane)](https://www.npmjs.com/package/react-sliding-pane)
-[![bundle size](https://badgen.net/bundlephobia/minzip/react-sliding-pane)](https://bundlephobia.com/result?p=react-sliding-pane@6.1.0)
+[![bundle size](https://badgen.net/bundlephobia/minzip/react-sliding-pane)](https://bundlephobia.com/result?p=react-sliding-pane)
 
 <a href="https://www.browserstack.com/">
     <img src="https://raw.githubusercontent.com/DimitryDushkin/sliding-pane/master/docs/browserstack-logo.png" width="300" title="Thanks to BrowserStack" />
