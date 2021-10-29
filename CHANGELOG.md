@@ -1,4 +1,11 @@
+### 7.1.0
+
+- Fixes state update of unmounted component
+- Unit-tests added, 100% coverage
+- Up deps
+
 ### 7.0
+
 - Fixes https://github.com/DimitryDushkin/sliding-pane/issues/50 and https://github.com/DimitryDushkin/sliding-pane/issues/45
 - Up deps
 

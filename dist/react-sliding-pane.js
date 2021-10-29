@@ -20,7 +20,7 @@ function useUpdateStateIfMounted(initialValue) {
     return function () {
       isMountedRef.current = false;
     };
-  });
+  }, []);
   var useStateResult = React.useState(initialValue);
   var state = useStateResult[0];
   var setState = useStateResult[1];
@@ -56,19 +56,22 @@ function ReactSlidingPane(_ref) {
   var state = useUpdateStateIfMounted(false);
   var wasOpen = state[0];
   var setWasOpen = state[1];
-  var handleAfterOpen = React.useCallback(function () {
+
+  var handleAfterOpen = function handleAfterOpen() {
     // Timeout fixes animation in Safari
     onAfterOpen === null || onAfterOpen === void 0 ? void 0 : onAfterOpen();
     setTimeout(function () {
       setWasOpen(true);
     }, 0);
-  }, [onAfterOpen]);
-  var handleAfterClose = React.useCallback(function () {
+  };
+
+  var handleAfterClose = function handleAfterClose() {
     onAfterClose === null || onAfterClose === void 0 ? void 0 : onAfterClose();
     setTimeout(function () {
       setWasOpen(false);
     }, 0);
-  }, [onAfterClose]);
+  };
+
   return /*#__PURE__*/React__default["default"].createElement(Modal__default["default"], {
     ariaHideApp: false,
     overlayClassName: {
