@@ -13,7 +13,7 @@ Features:
 - Typescript support
 - Runtime props validation in dev via "prop-types"
 - React [Strict mode](https://reactjs.org/docs/strict-mode.html) covered
-- Small — 7.1 Kb gzip (react-sliding-pane + react-modal as dependency)
+- Small — 8 Kb gzip (react-sliding-pane + react-modal as dependency)
 
 See [changelog](https://github.com/DimitryDushkin/sliding-pane/blob/master/CHANGELOG.md).
 
