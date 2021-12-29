@@ -119,6 +119,7 @@ render(<App />, document.getElementById("app"));
 | className        |          |         |            CSS class name. See react-modal |
 | overlayClassName |          |         | CSS class name of overlay. See react-modal |
 | width            |          |         |                 CSS string for width pane. |
+| height           |          |         |                CSS string for height pane. |
 | closeIcon        |          |         |                          Custom close icon |
 | shouldCloseOnEsc |          |         |                   Enable pane close on ESC |
 | hideHeader       |          |         |                           Hide pane header |

@@ -4,11 +4,12 @@ declare type Props = {
     isOpen?: boolean;
     title?: React.ReactNode;
     subtitle?: React.ReactNode;
-    from?: "left" | "right" | "bottom";
+    from?: "left" | "right" | "bottom" | "top";
     children: React.ReactNode;
     className?: string;
     overlayClassName?: string;
     width?: string;
+    height?: string;
     closeIcon?: React.ReactNode;
     shouldCloseOnEsc?: boolean;
     hideHeader?: boolean;
@@ -16,5 +17,5 @@ declare type Props = {
     onAfterOpen?: () => void;
     onAfterClose?: () => void;
 };
-export declare function ReactSlidingPane({ isOpen, title, subtitle, onRequestClose, onAfterOpen, onAfterClose, children, className, overlayClassName, closeIcon, from, width, shouldCloseOnEsc, hideHeader, }: Props): JSX.Element;
+export declare function ReactSlidingPane({ isOpen, title, subtitle, onRequestClose, onAfterOpen, onAfterClose, children, className, overlayClassName, closeIcon, from, width, height, shouldCloseOnEsc, hideHeader, }: Props): JSX.Element;
 export default ReactSlidingPane;

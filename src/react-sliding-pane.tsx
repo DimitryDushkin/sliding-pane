@@ -12,11 +12,12 @@ type Props = {
   isOpen?: boolean;
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
-  from?: "left" | "right" | "bottom"; // "right" — default
+  from?: "left" | "right" | "bottom" | "top"; // "right" — default
   children: React.ReactNode;
   className?: string;
   overlayClassName?: string;
   width?: string; // CSS string for width
+  height?: string; // CSS string for height
   closeIcon?: React.ReactNode;
   shouldCloseOnEsc?: boolean;
   hideHeader?: boolean;
@@ -60,7 +61,8 @@ export function ReactSlidingPane({
   overlayClassName,
   closeIcon,
   from = "right",
-  width,
+  width = getDefaultWidth(from),
+  height = getDefaultHeight(from),
   shouldCloseOnEsc,
   hideHeader = false,
 }: Props) {
@@ -100,7 +102,11 @@ export function ReactSlidingPane({
         beforeClose: "content-before-close",
       }}
       style={{
-        content: { width: width || "80%" },
+        content: {
+          width,
+          height,
+          ...(from === "bottom" ? { marginTop: calcMarginTop(height) } : {}),
+        },
       }}
       closeTimeoutMS={CLOSE_TIMEOUT}
       isOpen={isOpen ?? false}
@@ -129,6 +135,23 @@ export function ReactSlidingPane({
       <div className="slide-pane__content">{children}</div>
     </Modal>
   );
+}
+
+function getDefaultWidth(from: Props["from"]): string {
+  return from === "left" || from === "right" ? "80%" : "100%";
+}
+
+function getDefaultHeight(from: Props["from"]): string {
+  return from === "bottom" || from === "top" ? "80%" : "100%";
+}
+
+function calcMarginTop(height: string): string {
+  const isPercentageValue = /%/.test(height);
+  if (isPercentageValue) {
+    const heightInDecimalValue = parseFloat(height.split("%")[0]) / 100;
+    return `calc(100vh - (${heightInDecimalValue} * 100vh))`;
+  }
+  return `calc(100vh - ${height})`;
 }
 
 function IconClose() {
