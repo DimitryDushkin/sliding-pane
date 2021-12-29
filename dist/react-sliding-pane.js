@@ -176,7 +176,7 @@ ReactSlidingPane.propTypes = {
   isOpen: _pt__default["default"].bool,
   title: _pt__default["default"].node,
   subtitle: _pt__default["default"].node,
-  from: _pt__default["default"].oneOf(["left", "right", "bottom"]),
+  from: _pt__default["default"].oneOf(["left", "right", "bottom", "top"]),
   children: _pt__default["default"].node.isRequired,
   className: _pt__default["default"].string,
   overlayClassName: _pt__default["default"].string,
@@ -195,7 +195,7 @@ function getDefaultWidth(from) {
 }
 
 function getDefaultHeight(from) {
-  return from === "bottom" ? "80%" : "100%";
+  return from === "bottom" || from === "top" ? "80%" : "100%";
 }
 
 function calcMarginTop(height) {

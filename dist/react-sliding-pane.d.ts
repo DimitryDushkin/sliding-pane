@@ -4,7 +4,7 @@ declare type Props = {
     isOpen?: boolean;
     title?: React.ReactNode;
     subtitle?: React.ReactNode;
-    from?: "left" | "right" | "bottom";
+    from?: "left" | "right" | "bottom" | "top";
     children: React.ReactNode;
     className?: string;
     overlayClassName?: string;
