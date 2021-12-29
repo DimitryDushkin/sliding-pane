@@ -12,7 +12,7 @@ type Props = {
   isOpen?: boolean;
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
-  from?: "left" | "right" | "bottom"; // "right" — default
+  from?: "left" | "right" | "bottom" | "top"; // "right" — default
   children: React.ReactNode;
   className?: string;
   overlayClassName?: string;
@@ -142,7 +142,7 @@ function getDefaultWidth(from: Props["from"]): string {
 }
 
 function getDefaultHeight(from: Props["from"]): string {
-  return from === "bottom" ? "80%" : "100%";
+  return from === "bottom" || from === "top" ? "80%" : "100%";
 }
 
 function calcMarginTop(height: string): string {

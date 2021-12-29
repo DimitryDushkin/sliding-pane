@@ -41,6 +41,15 @@
 .slide-pane_from_bottom.content-before-close {
   transform: translateY(100%);
 }
+.slide-pane_from_top {
+  transform: translateY(-100%);
+}
+.slide-pane_from_top.content-after-open {
+  transform: translateY(0%);
+}
+.slide-pane_from_top.content-before-close {
+  transform: translateY(-100%);
+}
 .slide-pane__overlay {
   position: fixed;
   top: 0px;

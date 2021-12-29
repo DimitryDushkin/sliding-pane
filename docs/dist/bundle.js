@@ -31164,7 +31164,7 @@
     }
   }
 
-  var css_248z = ".slide-pane {\n  display: flex;\n  flex-direction: column;\n  background: #fff;\n  min-width: 100px;\n  height: 100%;\n  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);\n  transition: transform 0.5s;\n  will-change: transform;\n}\n.slide-pane:focus {\n  outline-style: none;\n}\n.slide-pane_from_right {\n  margin-left: auto;\n  transform: translateX(100%);\n}\n.slide-pane_from_right.content-after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_right.content-before-close {\n  transform: translateX(100%);\n}\n.slide-pane_from_left {\n  margin-right: auto;\n  transform: translateX(-100%);\n}\n.slide-pane_from_left.content-after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_left.content-before-close {\n  transform: translateX(-100%);\n}\n.slide-pane_from_bottom {\n  height: 90vh;\n  transform: translateY(100%);\n}\n.slide-pane_from_bottom.content-after-open {\n  transform: translateY(0%);\n}\n.slide-pane_from_bottom.content-before-close {\n  transform: translateY(100%);\n}\n.slide-pane__overlay {\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  right: 0px;\n  bottom: 0px;\n  background-color: rgba(0, 0, 0, 0);\n}\n.slide-pane__overlay.overlay-after-open {\n  background-color: rgba(0, 0, 0, 0.3);\n  transition: background-color 0.5s;\n}\n.slide-pane__overlay.overlay-before-close {\n  background-color: rgba(0, 0, 0, 0);\n}\n.slide-pane__header {\n  display: flex;\n  flex: 0 0 64px;\n  align-items: center;\n  background: #ebebeb;\n  height: 64px;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n}\n.slide-pane__title-wrapper {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  margin-left: 32px;\n  min-width: 0;\n}\n.slide-pane .slide-pane__title {\n  font-size: 18px;\n  font-weight: normal;\n  max-width: 80%;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin: 0;\n  padding: 0;\n}\n.slide-pane__close {\n  margin-left: 24px;\n  padding: 16px;\n  opacity: 0.7;\n  cursor: pointer;\n}\n.slide-pane__close svg {\n  width: 12px;\n  padding: 0;\n}\n.slide-pane__content {\n  position: relative;\n  overflow-y: auto;\n  padding: 24px 32px;\n  flex: 1 1 auto;\n}\n.slide-pane__subtitle {\n  font-size: 12px;\n  margin-top: 2px;\n}\n";
+  var css_248z = ".slide-pane {\n  display: flex;\n  flex-direction: column;\n  background: #fff;\n  min-width: 100px;\n  height: 100%;\n  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);\n  transition: transform 0.5s;\n  will-change: transform;\n}\n.slide-pane:focus {\n  outline-style: none;\n}\n.slide-pane_from_right {\n  margin-left: auto;\n  transform: translateX(100%);\n}\n.slide-pane_from_right.content-after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_right.content-before-close {\n  transform: translateX(100%);\n}\n.slide-pane_from_left {\n  margin-right: auto;\n  transform: translateX(-100%);\n}\n.slide-pane_from_left.content-after-open {\n  transform: translateX(0%);\n}\n.slide-pane_from_left.content-before-close {\n  transform: translateX(-100%);\n}\n.slide-pane_from_bottom {\n  height: 90vh;\n  transform: translateY(100%);\n}\n.slide-pane_from_bottom.content-after-open {\n  transform: translateY(0%);\n}\n.slide-pane_from_bottom.content-before-close {\n  transform: translateY(100%);\n}\n.slide-pane_from_top {\n  transform: translateY(-100%);\n}\n.slide-pane_from_top.content-after-open {\n  transform: translateY(0%);\n}\n.slide-pane_from_top.content-before-close {\n  transform: translateY(-100%);\n}\n.slide-pane__overlay {\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  right: 0px;\n  bottom: 0px;\n  background-color: rgba(0, 0, 0, 0);\n}\n.slide-pane__overlay.overlay-after-open {\n  background-color: rgba(0, 0, 0, 0.3);\n  transition: background-color 0.5s;\n}\n.slide-pane__overlay.overlay-before-close {\n  background-color: rgba(0, 0, 0, 0);\n}\n.slide-pane__header {\n  display: flex;\n  flex: 0 0 64px;\n  align-items: center;\n  background: #ebebeb;\n  height: 64px;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n}\n.slide-pane__title-wrapper {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  margin-left: 32px;\n  min-width: 0;\n}\n.slide-pane .slide-pane__title {\n  font-size: 18px;\n  font-weight: normal;\n  max-width: 80%;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin: 0;\n  padding: 0;\n}\n.slide-pane__close {\n  margin-left: 24px;\n  padding: 16px;\n  opacity: 0.7;\n  cursor: pointer;\n}\n.slide-pane__close svg {\n  width: 12px;\n  padding: 0;\n}\n.slide-pane__content {\n  position: relative;\n  overflow-y: auto;\n  padding: 24px 32px;\n  flex: 1 1 auto;\n}\n.slide-pane__subtitle {\n  font-size: 12px;\n  margin-top: 2px;\n}\n";
   styleInject(css_248z);
 
   var CLOSE_TIMEOUT = 500;
@@ -31278,7 +31278,7 @@
     isOpen: _pt.bool,
     title: _pt.node,
     subtitle: _pt.node,
-    from: _pt.oneOf(["left", "right", "bottom"]),
+    from: _pt.oneOf(["left", "right", "bottom", "top"]),
     children: _pt.node.isRequired,
     className: _pt.string,
     overlayClassName: _pt.string,
@@ -31297,7 +31297,7 @@
   }
 
   function getDefaultHeight(from) {
-    return from === "bottom" ? "80%" : "100%";
+    return from === "bottom" || from === "top" ? "80%" : "100%";
   }
 
   function calcMarginTop(height) {
@@ -31331,24 +31331,48 @@
         setOpenedPane = _useState2[1];
 
     return /*#__PURE__*/React.createElement(react.exports.StrictMode, null, /*#__PURE__*/React.createElement("div", {
-      ref: rootRef
-    }, /*#__PURE__*/React.createElement("button", {
-      onClick: function onClick() {
-        return setOpenedPane("right");
-      }
-    }, "Open right pane"), /*#__PURE__*/React.createElement("div", {
       style: {
-        marginTop: "32px"
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "calc(100vw - 64px)",
+        height: "calc(100vh - 64px)"
+      },
+      ref: rootRef
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setOpenedPane("top");
+      }
+    }, "Open top pane")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        margin: "32px 0"
       }
     }, /*#__PURE__*/React.createElement("button", {
+      style: {
+        marginRight: "32px"
+      },
       onClick: function onClick() {
         return setOpenedPane("left");
       }
-    }, "Open left pane with 20% width and hidden header"), /*#__PURE__*/React.createElement("button", {
+    }, "Open left pane"), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setOpenedPane("right");
+      }
+    }, "Open right pane")), /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
         return setOpenedPane("bottom");
       }
-    }, "Open bottom pane")), /*#__PURE__*/React.createElement(ReactSlidingPane, {
+    }, "Open bottom pane"), /*#__PURE__*/React.createElement(ReactSlidingPane, {
+      isOpen: paneOpened === "top",
+      title: "Hey, it is optional pane title.  I can be React component too.",
+      from: "top",
+      height: "auto",
+      onRequestClose: function onRequestClose() {
+        return setOpenedPane(null);
+      },
+      hideHeader: true
+    }, /*#__PURE__*/React.createElement("div", null, "And I am pane content on top and my height is set to auto.")), /*#__PURE__*/React.createElement(ReactSlidingPane, {
       className: "some-custom-class",
       overlayClassName: "some-custom-overlay-class",
       isOpen: paneOpened === "right",
@@ -31371,16 +31395,16 @@
       style: {
         height: "110vh"
       }
-    }, "And I am pane content on left.")), /*#__PURE__*/React.createElement(ReactSlidingPane, {
+    }, "And I am pane content on left and I have 200px of width.")), /*#__PURE__*/React.createElement(ReactSlidingPane, {
       isOpen: paneOpened === "bottom",
       title: "Hey, it is optional pane title.  I can be React component too.",
       from: "bottom",
       width: "100%",
-      height: "600px",
+      height: "20%",
       onRequestClose: function onRequestClose() {
         return setOpenedPane(null);
       }
-    }, /*#__PURE__*/React.createElement("div", null, "And I am pane content on the bottom."))));
+    }, /*#__PURE__*/React.createElement("div", null, "And I am pane content on the bottom and I have a height of 20%."))));
   }
 
   var Content = /*#__PURE__*/function (_Component) {
@@ -31408,7 +31432,7 @@
     }, {
       key: "render",
       value: function render() {
-        return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, "And I am pane content. BTW, what rocks?"), /*#__PURE__*/React.createElement("p", null, "Contructor and componentDidMount called every time pane opens."), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("img", {
+        return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, "And I am pane content. BTW, what rocks?"), /*#__PURE__*/React.createElement("p", null, "Constructor and componentDidMount called every time pane opens."), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("img", {
           src: "img.png"
         }));
       }
