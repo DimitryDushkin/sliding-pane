@@ -12,6 +12,59 @@ var _pt__default = /*#__PURE__*/_interopDefaultLegacy(_pt);
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 var Modal__default = /*#__PURE__*/_interopDefaultLegacy(Modal);
 
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+
+    if (enumerableOnly) {
+      symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+    }
+
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
 var CLOSE_TIMEOUT = 500;
 
 function useUpdateStateIfMounted(initialValue) {
@@ -47,7 +100,10 @@ function ReactSlidingPane(_ref) {
       closeIcon = _ref.closeIcon,
       _ref$from = _ref.from,
       from = _ref$from === void 0 ? "right" : _ref$from,
-      width = _ref.width,
+      _ref$width = _ref.width,
+      width = _ref$width === void 0 ? getDefaultWidth(from) : _ref$width,
+      _ref$height = _ref.height,
+      height = _ref$height === void 0 ? getDefaultHeight(from) : _ref$height,
       shouldCloseOnEsc = _ref.shouldCloseOnEsc,
       _ref$hideHeader = _ref.hideHeader,
       hideHeader = _ref$hideHeader === void 0 ? false : _ref$hideHeader;
@@ -85,9 +141,12 @@ function ReactSlidingPane(_ref) {
       beforeClose: "content-before-close"
     },
     style: {
-      content: {
-        width: width || "80%"
-      }
+      content: _objectSpread2({
+        width: width,
+        height: height
+      }, from === "bottom" ? {
+        marginTop: calcMarginTop(height)
+      } : {})
     },
     closeTimeoutMS: CLOSE_TIMEOUT,
     isOpen: isOpen !== null && isOpen !== void 0 ? isOpen : false,
@@ -122,6 +181,7 @@ ReactSlidingPane.propTypes = {
   className: _pt__default["default"].string,
   overlayClassName: _pt__default["default"].string,
   width: _pt__default["default"].string,
+  height: _pt__default["default"].string,
   closeIcon: _pt__default["default"].node,
   shouldCloseOnEsc: _pt__default["default"].bool,
   hideHeader: _pt__default["default"].bool,
@@ -129,6 +189,25 @@ ReactSlidingPane.propTypes = {
   onAfterOpen: _pt__default["default"].func,
   onAfterClose: _pt__default["default"].func
 };
+
+function getDefaultWidth(from) {
+  return from === "left" || from === "right" ? "80%" : "100%";
+}
+
+function getDefaultHeight(from) {
+  return from === "bottom" ? "80%" : "100%";
+}
+
+function calcMarginTop(height) {
+  var isPercentageValue = /%/.test(height);
+
+  if (isPercentageValue) {
+    var heightInDecimalValue = parseFloat(height.split("%")[0]) / 100;
+    return "calc(100vh - (".concat(heightInDecimalValue, " * 100vh))");
+  }
+
+  return "calc(100vh - ".concat(height, ")");
+}
 
 function IconClose() {
   return /*#__PURE__*/React__default["default"].createElement("svg", {

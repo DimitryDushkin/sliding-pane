@@ -33,7 +33,6 @@
 }
 .slide-pane_from_bottom {
   height: 90vh;
-  margin-top: 10vh;
   transform: translateY(100%);
 }
 .slide-pane_from_bottom.content-after-open {
