@@ -29,8 +29,12 @@ function useUpdateStateIfMounted<T>(initialValue: T) {
   const isMountedRef = useRef(true);
 
   useEffect(
-    () => () => {
-      isMountedRef.current = false;
+    () => {
+      isMountedRef.current = true;
+
+      return () => {
+        isMountedRef.current = false;
+      }
     },
     []
   );
