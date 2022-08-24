@@ -17,6 +17,7 @@ var CLOSE_TIMEOUT = 500;
 function useUpdateStateIfMounted(initialValue) {
   var isMountedRef = React.useRef(true);
   React.useEffect(function () {
+    isMountedRef.current = true;
     return function () {
       isMountedRef.current = false;
     };
