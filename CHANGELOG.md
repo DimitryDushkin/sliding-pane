@@ -1,3 +1,6 @@
+### 7.2.0
+- Fixes react 18 strict mode compatability. See https://github.com/DimitryDushkin/sliding-pane/issues/73
+
 ### 7.1.0
 
 - Fixes state update of unmounted component
