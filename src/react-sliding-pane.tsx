@@ -147,4 +147,5 @@ function IconClose() {
   );
 }
 
+export type { Props as ReactSlidingPaneProps };
 export default ReactSlidingPane;
