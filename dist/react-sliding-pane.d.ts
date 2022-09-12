@@ -1,6 +1,6 @@
 import React from "react";
 import "./react-sliding-pane.css";
-declare type Props = {
+declare type ReactSlidingPaneProps = {
     isOpen?: boolean;
     title?: React.ReactNode;
     subtitle?: React.ReactNode;
@@ -16,5 +16,6 @@ declare type Props = {
     onAfterOpen?: () => void;
     onAfterClose?: () => void;
 };
-export declare function ReactSlidingPane({ isOpen, title, subtitle, onRequestClose, onAfterOpen, onAfterClose, children, className, overlayClassName, closeIcon, from, width, shouldCloseOnEsc, hideHeader, }: Props): JSX.Element;
+export declare function ReactSlidingPane({ isOpen, title, subtitle, onRequestClose, onAfterOpen, onAfterClose, children, className, overlayClassName, closeIcon, from, width, shouldCloseOnEsc, hideHeader, }: ReactSlidingPaneProps): JSX.Element;
+export type { ReactSlidingPaneProps };
 export default ReactSlidingPane;
