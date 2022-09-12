@@ -8,7 +8,7 @@ import "./react-sliding-pane.css";
 
 const CLOSE_TIMEOUT = 500;
 
-type Props = {
+type ReactSlidingPaneProps = {
   isOpen?: boolean;
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
@@ -67,7 +67,7 @@ export function ReactSlidingPane({
   width,
   shouldCloseOnEsc,
   hideHeader = false,
-}: Props) {
+}: ReactSlidingPaneProps) {
   const directionClass = `slide-pane_from_${from}`;
 
   // Not usign array destruction to reduce bundle size by not introducing polyfill
@@ -147,4 +147,5 @@ function IconClose() {
   );
 }
 
+export type { ReactSlidingPaneProps };
 export default ReactSlidingPane;
