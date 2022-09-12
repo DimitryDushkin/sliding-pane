@@ -1,4 +1,9 @@
+### 7.3.0
+
+- Now exporting TypeScript types. Thanks @athrunsun for the PR (https://github.com/DimitryDushkin/sliding-pane/pull/76)!
+
 ### 7.2.0
+
 - Fixes react 18 strict mode compatability. See https://github.com/DimitryDushkin/sliding-pane/issues/73
 
 ### 7.1.0
