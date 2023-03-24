@@ -79,6 +79,7 @@ export function ReactSlidingPane({
     // Timeout fixes animation in Safari
     onAfterOpen?.();
     setTimeout(() => {
+      document.body.style.overflow = "hidden";
       setWasOpen(true);
     }, 0);
   };
@@ -86,6 +87,7 @@ export function ReactSlidingPane({
   const handleAfterClose = () => {
     onAfterClose?.();
     setTimeout(() => {
+      document.body.style.overflow = "auto";
       setWasOpen(false);
     }, 0);
   };
