@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "docs": "rollup -c rollup-docs.config.js",
+    "docs": "rollup -c rollup-docs.config.js && open docs/example.html",
     "lint": "eslint ./src/*.tsx",
     "test": "jest",
     "prepublishOnly": "echo \"BUILD BEFORE PUBLISH\" && yarn run build && yarn run lint && yarn test && tsc"

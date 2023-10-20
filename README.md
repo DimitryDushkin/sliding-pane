@@ -129,7 +129,6 @@ render(<App />, document.getElementById("app"));
 
 ```
 npm run docs
-open docs/example.html
 ```
 
 ### How to release
